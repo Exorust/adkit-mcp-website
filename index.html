@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdKit — Native Ads for AI Products</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --purple-50: #f3f0ff;
@@ -35,7 +44,9 @@
       --radius-sm: 8px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -62,6 +73,7 @@
       border-bottom: 1px solid var(--border);
       transition: background 0.3s;
     }
+
     nav .logo {
       font-size: 1.4rem;
       font-weight: 800;
@@ -69,8 +81,17 @@
       text-decoration: none;
       letter-spacing: -0.5px;
     }
-    nav .logo span { color: var(--purple-400); }
-    nav .nav-links { display: flex; gap: 2rem; align-items: center; }
+
+    nav .logo span {
+      color: var(--purple-400);
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
     nav .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
@@ -78,7 +99,11 @@
       font-weight: 500;
       transition: color 0.2s;
     }
-    nav .nav-links a:hover { color: #fff; }
+
+    nav .nav-links a:hover {
+      color: #fff;
+    }
+
     nav .nav-cta {
       background: var(--purple-500);
       color: #fff !important;
@@ -87,7 +112,11 @@
       font-weight: 600;
       transition: background 0.2s, transform 0.15s;
     }
-    nav .nav-cta:hover { background: var(--purple-400); transform: translateY(-1px); }
+
+    nav .nav-cta:hover {
+      background: var(--purple-400);
+      transform: translateY(-1px);
+    }
 
     .mobile-toggle {
       display: none;
@@ -109,38 +138,43 @@
       overflow: hidden;
       background: linear-gradient(135deg, #4a3ab8 0%, #6c5ce7 40%, #7c6df0 70%, #8b7cf5 100%);
     }
+
     .hero-grid {
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
       background-size: 60px 60px;
     }
+
     .hero-arc-tr {
       position: absolute;
       top: -80px;
       right: -80px;
       width: 320px;
       height: 320px;
-      border: 50px solid rgba(255,255,255,0.12);
+      border: 50px solid rgba(255, 255, 255, 0.12);
       border-radius: 50%;
     }
+
     .hero-arc-bl {
       position: absolute;
       bottom: -100px;
       left: -100px;
       width: 300px;
       height: 300px;
-      border: 50px solid rgba(255,255,255,0.10);
+      border: 50px solid rgba(255, 255, 255, 0.10);
       border-radius: 50%;
     }
+
     .hero-content {
       position: relative;
       z-index: 1;
       max-width: 800px;
       padding: 2rem;
     }
+
     .hero-content h1 {
       font-size: clamp(1.8rem, 4.5vw, 3rem);
       font-weight: 800;
@@ -149,27 +183,31 @@
       line-height: 1.2;
       margin-bottom: 1rem;
     }
+
     .hero-content .tagline {
       font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: rgba(255,255,255,0.85);
+      color: rgba(255, 255, 255, 0.85);
       font-weight: 400;
       font-style: italic;
       margin-bottom: 2rem;
     }
+
     .hero-content .subtitle {
       font-size: 1.1rem;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255, 255, 255, 0.75);
       max-width: 600px;
       margin: 0 auto 1rem;
       line-height: 1.7;
     }
+
     .hero-content .supporting {
       font-size: 1rem;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       max-width: 600px;
       margin: 0 auto 2.5rem;
       line-height: 1.6;
     }
+
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
@@ -177,6 +215,7 @@
       justify-content: center;
       margin-bottom: 2rem;
     }
+
     .badge {
       display: inline-flex;
       align-items: center;
@@ -185,20 +224,34 @@
       border-radius: 999px;
       font-size: 0.8rem;
       font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
       color: #fff;
       backdrop-filter: blur(8px);
     }
+
     .badge .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
     }
-    .badge .dot.blue { background: #3b82f6; }
-    .badge .dot.green { background: #22c55e; }
-    .badge .dot.violet { background: #a78bfa; }
-    .badge .dot.orange { background: #f59e42; }
+
+    .badge .dot.blue {
+      background: #3b82f6;
+    }
+
+    .badge .dot.green {
+      background: #22c55e;
+    }
+
+    .badge .dot.violet {
+      background: #a78bfa;
+    }
+
+    .badge .dot.orange {
+      background: #f59e42;
+    }
+
     .hero-buttons {
       display: flex;
       gap: 1rem;
@@ -206,6 +259,7 @@
       flex-wrap: wrap;
       margin-bottom: 2rem;
     }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -219,17 +273,28 @@
       cursor: pointer;
       border: none;
     }
+
     .btn-primary {
       background: #fff;
       color: var(--purple-700);
     }
-    .btn-primary:hover { background: var(--purple-50); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-    .btn-secondary {
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.25);
+
+    .btn-primary:hover {
+      background: var(--purple-50);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
 
     .hero-links {
       display: flex;
@@ -237,14 +302,18 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+
     .hero-links a {
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
       transition: color 0.2s;
     }
-    .hero-links a:hover { color: #fff; }
+
+    .hero-links a:hover {
+      color: #fff;
+    }
 
     /* ── SECTIONS ── */
     .container {
@@ -256,6 +325,7 @@
     section {
       padding: 6rem 0;
     }
+
     section:nth-child(even) {
       background: rgba(26, 24, 48, 0.4);
     }
@@ -271,6 +341,7 @@
       color: var(--purple-400);
       margin-bottom: 1rem;
     }
+
     .section-title {
       font-size: 2.5rem;
       font-weight: 800;
@@ -278,6 +349,7 @@
       margin-bottom: 1rem;
       color: #fff;
     }
+
     .section-desc {
       font-size: 1.1rem;
       color: var(--text-muted);
@@ -292,6 +364,7 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
     }
+
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -299,11 +372,13 @@
       padding: 2rem;
       transition: transform 0.2s, border-color 0.2s, background 0.2s;
     }
+
     .card:hover {
       transform: translateY(-4px);
       border-color: var(--purple-500);
       background: var(--bg-card-hover);
     }
+
     .card-icon {
       width: 48px;
       height: 48px;
@@ -315,12 +390,14 @@
       margin-bottom: 1.2rem;
       background: rgba(108, 92, 231, 0.15);
     }
+
     .card h3 {
       font-size: 1.15rem;
       font-weight: 700;
       margin-bottom: 0.6rem;
       color: #fff;
     }
+
     .card p {
       color: var(--text-muted);
       font-size: 0.95rem;
@@ -334,6 +411,7 @@
       gap: 2rem;
       margin-bottom: 3rem;
     }
+
     .plane-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -342,6 +420,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .plane-card::before {
       content: '';
       position: absolute;
@@ -350,24 +429,34 @@
       right: 0;
       height: 3px;
     }
-    .plane-card.data::before { background: linear-gradient(90deg, var(--purple-400), var(--purple-300)); }
-    .plane-card.control::before { background: linear-gradient(90deg, var(--orange), #f97316); }
+
+    .plane-card.data::before {
+      background: linear-gradient(90deg, var(--purple-400), var(--purple-300));
+    }
+
+    .plane-card.control::before {
+      background: linear-gradient(90deg, var(--orange), #f97316);
+    }
+
     .plane-card h3 {
       font-size: 1.2rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 0.3rem;
     }
+
     .plane-card .plane-purpose {
       color: var(--text-muted);
       font-size: 0.9rem;
       margin-bottom: 0.3rem;
     }
+
     .plane-card .plane-caller {
       color: var(--text-dim);
       font-size: 0.8rem;
       margin-bottom: 1.2rem;
     }
+
     .plane-card .plane-entry {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
@@ -378,9 +467,11 @@
       display: inline-block;
       margin-bottom: 1.2rem;
     }
+
     .tool-list {
       list-style: none;
     }
+
     .tool-list li {
       padding: 0.5rem 0;
       border-bottom: 1px solid var(--border);
@@ -389,13 +480,18 @@
       gap: 0.5rem;
       align-items: baseline;
     }
-    .tool-list li:last-child { border-bottom: none; }
+
+    .tool-list li:last-child {
+      border-bottom: none;
+    }
+
     .tool-name {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 600;
       color: var(--purple-300);
       white-space: nowrap;
     }
+
     .tool-desc {
       color: var(--text-muted);
       font-size: 0.85rem;
@@ -408,11 +504,13 @@
       border: 1px solid var(--border);
       margin-bottom: 2rem;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.9rem;
     }
+
     th {
       background: var(--bg-card);
       color: var(--purple-300);
@@ -425,14 +523,24 @@
       border-bottom: 1px solid var(--border);
       white-space: nowrap;
     }
+
     td {
       padding: 0.75rem 1.2rem;
       border-bottom: 1px solid var(--border);
       color: var(--text-muted);
     }
-    tr:last-child td { border-bottom: none; }
-    tr:hover td { background: rgba(108, 92, 231, 0.04); }
-    td code, p code, li code {
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(108, 92, 231, 0.04);
+    }
+
+    td code,
+    p code,
+    li code {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.85em;
       background: var(--code-bg);
@@ -446,6 +554,7 @@
       position: relative;
       margin-bottom: 1.5rem;
     }
+
     .code-block-header {
       display: flex;
       align-items: center;
@@ -456,6 +565,7 @@
       border-radius: var(--radius) var(--radius) 0 0;
       padding: 0.6rem 1rem;
     }
+
     .code-block-lang {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.75rem;
@@ -463,6 +573,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+
     .copy-btn {
       background: none;
       border: 1px solid var(--border);
@@ -474,7 +585,12 @@
       font-family: 'Inter', sans-serif;
       transition: all 0.15s;
     }
-    .copy-btn:hover { color: var(--text); border-color: var(--purple-500); }
+
+    .copy-btn:hover {
+      color: var(--text);
+      border-color: var(--purple-500);
+    }
+
     pre {
       background: var(--code-bg);
       border: 1px solid var(--border);
@@ -486,24 +602,42 @@
       line-height: 1.7;
       color: var(--text);
     }
+
     pre.standalone {
       border-radius: var(--radius);
     }
-    .code-comment { color: #6b6785; }
-    .code-string { color: #a8e6a1; }
-    .code-keyword { color: #c084fc; }
-    .code-function { color: #93c5fd; }
-    .code-var { color: #fbbf24; }
+
+    .code-comment {
+      color: #6b6785;
+    }
+
+    .code-string {
+      color: #a8e6a1;
+    }
+
+    .code-keyword {
+      color: #c084fc;
+    }
+
+    .code-function {
+      color: #93c5fd;
+    }
+
+    .code-var {
+      color: #fbbf24;
+    }
 
     /* ── STEPS ── */
     .steps {
       counter-reset: step-counter;
     }
+
     .step {
       position: relative;
       padding-left: 3.5rem;
       margin-bottom: 2.5rem;
     }
+
     .step::before {
       counter-increment: step-counter;
       content: counter(step-counter);
@@ -521,6 +655,7 @@
       justify-content: center;
       border-radius: 50%;
     }
+
     .step::after {
       content: '';
       position: absolute;
@@ -530,13 +665,18 @@
       width: 2px;
       background: var(--border);
     }
-    .step:last-child::after { display: none; }
+
+    .step:last-child::after {
+      display: none;
+    }
+
     .step h3 {
       font-size: 1.1rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 0.6rem;
     }
+
     .step p {
       color: var(--text-muted);
       font-size: 0.95rem;
@@ -554,13 +694,28 @@
       line-height: 2;
       color: var(--text-muted);
     }
-    .repo-tree .folder { color: var(--purple-300); font-weight: 600; }
-    .repo-tree .comment { color: var(--text-dim); }
+
+    .repo-tree .folder {
+      color: var(--purple-300);
+      font-weight: 600;
+    }
+
+    .repo-tree .comment {
+      color: var(--text-dim);
+    }
 
     /* ── JSON BLOCK ── */
-    .json-key { color: #93c5fd; }
-    .json-string { color: #a8e6a1; }
-    .json-number { color: #fbbf24; }
+    .json-key {
+      color: #93c5fd;
+    }
+
+    .json-string {
+      color: #a8e6a1;
+    }
+
+    .json-number {
+      color: #fbbf24;
+    }
 
     /* ── SCHEMA SECTION ── */
     .schema-grid {
@@ -575,23 +730,27 @@
       padding: 3rem 0;
       text-align: center;
     }
+
     footer .footer-inner {
       max-width: 600px;
       margin: 0 auto;
       padding: 0 2rem;
     }
+
     footer h3 {
       font-size: 1.3rem;
       font-weight: 700;
       color: #fff;
       margin-bottom: 0.8rem;
     }
+
     footer p {
       color: var(--text-muted);
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
       line-height: 1.7;
     }
+
     .footer-links {
       display: flex;
       gap: 1.5rem;
@@ -599,6 +758,7 @@
       flex-wrap: wrap;
       margin-bottom: 2rem;
     }
+
     .footer-links a {
       color: var(--purple-300);
       text-decoration: none;
@@ -606,15 +766,24 @@
       font-size: 0.95rem;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--purple-200); }
+
+    .footer-links a:hover {
+      color: var(--purple-200);
+    }
+
     .footer-coffee {
       margin-bottom: 2rem;
     }
+
     .footer-coffee a img {
       height: 35px;
       transition: transform 0.2s;
     }
-    .footer-coffee a:hover img { transform: scale(1.05); }
+
+    .footer-coffee a:hover img {
+      transform: scale(1.05);
+    }
+
     .footer-bottom {
       color: var(--text-dim);
       font-size: 0.8rem;
@@ -622,7 +791,10 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+      }
+
       .nav-links.open {
         display: flex;
         flex-direction: column;
@@ -635,20 +807,45 @@
         border-bottom: 1px solid var(--border);
         gap: 1rem;
       }
-      .mobile-toggle { display: block; }
-      .hero-content h1 { letter-spacing: -2px; }
-      .arch-planes { grid-template-columns: 1fr; }
-      .schema-grid { grid-template-columns: 1fr; }
-      section { padding: 4rem 0; }
-      .section-title { font-size: 2rem; }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .hero-content h1 {
+        letter-spacing: -2px;
+      }
+
+      .arch-planes {
+        grid-template-columns: 1fr;
+      }
+
+      .schema-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 4rem 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
     }
 
     /* ── FAQs ── */
-    .faq-list { max-width: 700px; }
+    .faq-list {
+      max-width: 700px;
+    }
+
     .faq-item {
       border-bottom: 1px solid var(--border);
     }
-    .faq-item:last-child { border-bottom: none; }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
     .faq-question {
       width: 100%;
       text-align: left;
@@ -665,14 +862,22 @@
       font-family: inherit;
       transition: color 0.2s;
     }
-    .faq-question:hover { color: var(--purple-300); }
+
+    .faq-question:hover {
+      color: var(--purple-300);
+    }
+
     .faq-question::after {
       content: '+';
       font-size: 1.5rem;
       color: var(--purple-400);
       transition: transform 0.2s;
     }
-    .faq-question[aria-expanded="true"]::after { transform: rotate(45deg); }
+
+    .faq-question[aria-expanded="true"]::after {
+      transform: rotate(45deg);
+    }
+
     .faq-answer {
       color: var(--text-muted);
       font-size: 0.95rem;
@@ -682,7 +887,8 @@
       overflow: hidden;
       transition: max-height 0.3s ease;
     }
-    .faq-question[aria-expanded="true"] + .faq-answer {
+
+    .faq-question[aria-expanded="true"]+.faq-answer {
       max-height: 300px;
     }
 
@@ -692,255 +898,282 @@
       transform: translateY(24px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
   </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="logo">Ad<span>Kit</span></a>
-  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
-  <div class="nav-links">
-    <a href="#outcomes">Outcomes</a>
-    <a href="#who">Who it's for</a>
-    <a href="#architecture">Architecture</a>
-    <a href="#setup">Get Started</a>
-    <a href="technical.html">Technical Deep Dive</a>
-    <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit%20integration%20call" class="nav-cta">Book a call</a>
-  </div>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo">Ad<span>Kit</span></a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+      aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="#outcomes">Outcomes</a>
+      <a href="#who">Who it's for</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#setup">Get Started</a>
+      <a href="technical.html">Technical Deep Dive</a>
+      <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit%20integration%20call" class="nav-cta">Book a call</a>
+    </div>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-arc-tr"></div>
-  <div class="hero-arc-bl"></div>
-  <div class="hero-content">
-    <h1>Native ads for AI products&mdash;without keyword hacks.</h1>
-    <p class="subtitle">AdKit is a lightweight semantic ad engine that lets your LLM app request relevant sponsor inserts using natural language context&mdash;safely, through MCP.</p>
-    <p class="supporting">What you get: higher relevance, cleaner architecture, and guardrails that keep production sane.</p>
-    <div class="hero-badges">
-      <span class="badge"><span class="dot orange"></span>MCP-compatible</span>
-      <span class="badge"><span class="dot blue"></span>Python 3.10+</span>
-      <span class="badge"><span class="dot green"></span>Qdrant</span>
-      <span class="badge"><span class="dot violet"></span>Dual-plane security</span>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-arc-tr"></div>
+    <div class="hero-arc-bl"></div>
+    <div class="hero-content">
+      <h1>AdKit MCP</h1>
+      <p class="hero-title">Native ads for AI products<br>without keyword hacks.</p>
+      <p class="subtitle">A lightweight semantic ad engine that lets your LLM app request relevant sponsor inserts using
+        natural language context</p>
+      <p class="supporting">What you get: higher relevance, cleaner architecture, and guardrails that keep production
+        sane.</p>
+      <div class="hero-badges">
+        <span class="badge"><span class="dot orange"></span>MCP-compatible</span>
+        <span class="badge"><span class="dot blue"></span>Python 3.10+</span>
+        <span class="badge"><span class="dot green"></span>Qdrant</span>
+        <span class="badge"><span class="dot violet"></span>Dual-plane security</span>
+      </div>
+      <div class="hero-buttons">
+        <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit%20integration%20call" class="btn btn-primary">Book a
+          15-min integration call</a>
+        <a href="#architecture" class="btn btn-secondary">See the architecture</a>
+        <a href="#setup" class="btn btn-secondary">Try the demo</a>
+      </div>
+      <div class="hero-links">
+        <a href="https://twitter.com/charoori_ai">Follow Updates</a>
+        <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit">Contact &amp; Feedback</a>
+        <a href="https://www.buymeacoffee.com/charoori_ai">Buy Me a Coffee</a>
+      </div>
     </div>
-    <div class="hero-buttons">
-      <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit%20integration%20call" class="btn btn-primary">Book a 15-min integration call</a>
-      <a href="#architecture" class="btn btn-secondary">See the architecture</a>
-      <a href="#setup" class="btn btn-secondary">Try the demo</a>
-    </div>
-    <div class="hero-links">
-      <a href="https://twitter.com/charoori_ai">Follow Updates</a>
-      <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit">Contact &amp; Feedback</a>
-      <a href="https://www.buymeacoffee.com/charoori_ai">Buy Me a Coffee</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- THE 10-SECOND EXPLANATION -->
-<section id="explanation">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Overview</span>
-      <h2 class="section-title">The 10-second explanation</h2>
-      <p class="section-desc">
-        Most ad systems are brittle because they match strings. LLM apps need meaning-based matching.
-      </p>
-      <p class="section-desc">
-        AdKit matches ads semantically using embeddings + vector search, then applies typed constraints (topics, locale, vertical, exclusions, policy flags). Your agent calls a tiny MCP tool surface: match, explain, health, capabilities.
-      </p>
+  <!-- THE 10-SECOND EXPLANATION -->
+  <section id="explanation">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Overview</span>
+        <h2 class="section-title">The 10-second explanation</h2>
+        <p class="section-desc">
+          Most ad systems are brittle because they match strings. LLM apps need meaning-based matching.
+        </p>
+        <p class="section-desc">
+          AdKit matches ads semantically using embeddings + vector search, then applies typed constraints (topics,
+          locale, vertical, exclusions, policy flags). Your agent calls a tiny MCP tool surface: match, explain, health,
+          capabilities.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- BUSINESS OUTCOMES -->
-<section id="outcomes">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">For Executives</span>
-      <h2 class="section-title">The business outcomes (exec-friendly)</h2>
-      <p class="section-desc"><strong>Monetize without ruining trust.</strong></p>
+  <!-- BUSINESS OUTCOMES -->
+  <section id="outcomes">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">For Executives</span>
+        <h2 class="section-title">The business outcomes (exec-friendly)</h2>
+        <p class="section-desc"><strong>Monetize without ruining trust.</strong></p>
+      </div>
+      <div class="cards-grid fade-in">
+        <div class="card">
+          <div class="card-icon">&#128200;</div>
+          <h3>Relevance-first ads</h3>
+          <p>Ads that feel native to the conversation or page, not jarring interruptions.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9881;</div>
+          <h3>Fast sponsor onboarding</h3>
+          <p>Add sponsors without hand-built rules or constant maintenance.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128203;</div>
+          <h3>Auditability</h3>
+          <p>Answer "why did this ad show up?" with a full audit trace.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128274;</div>
+          <h3>Security boundary by design</h3>
+          <p>Runtime stays read-only. No surprises in production.</p>
+        </div>
+      </div>
+      <p class="section-desc fade-in" style="margin-top: 1rem; margin-bottom: 0;">If your AI product is going to scale,
+        you can't have monetization tied to fragile heuristics and ad-hoc scripts.</p>
     </div>
-    <div class="cards-grid fade-in">
-      <div class="card">
-        <div class="card-icon">&#128200;</div>
-        <h3>Relevance-first ads</h3>
-        <p>Ads that feel native to the conversation or page, not jarring interruptions.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">&#9881;</div>
-        <h3>Fast sponsor onboarding</h3>
-        <p>Add sponsors without hand-built rules or constant maintenance.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">&#128203;</div>
-        <h3>Auditability</h3>
-        <p>Answer "why did this ad show up?" with a full audit trace.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">&#128274;</div>
-        <h3>Security boundary by design</h3>
-        <p>Runtime stays read-only. No surprises in production.</p>
-      </div>
-    </div>
-    <p class="section-desc fade-in" style="margin-top: 1rem; margin-bottom: 0;">If your AI product is going to scale, you can't have monetization tied to fragile heuristics and ad-hoc scripts.</p>
-  </div>
-</section>
+  </section>
 
-<!-- WHO THIS IS FOR -->
-<section id="who">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Audience</span>
-      <h2 class="section-title">Who this is for</h2>
-      <p class="section-desc">AdKit is for teams building:</p>
+  <!-- WHO THIS IS FOR -->
+  <section id="who">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Audience</span>
+        <h2 class="section-title">Who this is for</h2>
+        <p class="section-desc">AdKit is for teams building:</p>
+      </div>
+      <div class="cards-grid fade-in">
+        <div class="card">
+          <div class="card-icon">&#129302;</div>
+          <h3>AI assistants and copilots</h3>
+          <p>Customer support, internal ops, sales, shopping&mdash;any agent that benefits from relevant sponsor
+            inserts.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128269;</div>
+          <h3>RAG search / Q&amp;A products</h3>
+          <p>Systems that want "sponsored context" alongside organic retrieval results.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128161;</div>
+          <h3>Content experiences</h3>
+          <p>"You might also like" or affiliate inserts based on meaning&mdash;not keywords.</p>
+        </div>
+      </div>
     </div>
-    <div class="cards-grid fade-in">
-      <div class="card">
-        <div class="card-icon">&#129302;</div>
-        <h3>AI assistants and copilots</h3>
-        <p>Customer support, internal ops, sales, shopping&mdash;any agent that benefits from relevant sponsor inserts.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">&#128269;</div>
-        <h3>RAG search / Q&amp;A products</h3>
-        <p>Systems that want "sponsored context" alongside organic retrieval results.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">&#128161;</div>
-        <h3>Content experiences</h3>
-        <p>"You might also like" or affiliate inserts based on meaning&mdash;not keywords.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Flow</span>
-      <h2 class="section-title">How it works (simple, non-nerdy)</h2>
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Flow</span>
+        <h2 class="section-title">How it works (simple, non-nerdy)</h2>
+      </div>
+      <div class="steps fade-in">
+        <div class="step">
+          <h3>Your app sends context</h3>
+          <p>Chat turns, page content, query text&mdash;anything the user is currently doing.</p>
+        </div>
+        <div class="step">
+          <h3>AdKit matches semantically + enforces constraints</h3>
+          <p>Embeds the context locally, retrieves candidates from Qdrant, then filters by targeting and policy.</p>
+        </div>
+        <div class="step">
+          <h3>You render a sponsor insert</h3>
+          <p>Inline, sidebar, banner, feed&mdash;your UI stays in control.</p>
+        </div>
+      </div>
     </div>
-    <div class="steps fade-in">
-      <div class="step">
-        <h3>Your app sends context</h3>
-        <p>Chat turns, page content, query text&mdash;anything the user is currently doing.</p>
-      </div>
-      <div class="step">
-        <h3>AdKit matches semantically + enforces constraints</h3>
-        <p>Embeds the context locally, retrieves candidates from Qdrant, then filters by targeting and policy.</p>
-      </div>
-      <div class="step">
-        <h3>You render a sponsor insert</h3>
-        <p>Inline, sidebar, banner, feed&mdash;your UI stays in control.</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- WHY ADKIT IS SAFER / ARCHITECTURE -->
-<section id="architecture">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Security</span>
-      <h2 class="section-title">Why AdKit is safer than &quot;just add ads&quot;</h2>
-      <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Dual-plane architecture (the part you should brag about)</h3>
-      <p class="section-desc">Most &quot;monetization plugins&quot; become a security disaster because runtime can mutate data. AdKit splits responsibilities: <strong>Data Plane</strong> (runtime) = read-only ad matching; <strong>Control Plane</strong> (admin) = ingestion, provisioning, admin operations. That separation is the difference between a prototype and something you can put into production.</p>
-    </div>
+  <!-- WHY ADKIT IS SAFER / ARCHITECTURE -->
+  <section id="architecture">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Security</span>
+        <h2 class="section-title">Why AdKit is safer than &quot;just add ads&quot;</h2>
+        <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Dual-plane architecture (the part
+          you should brag about)</h3>
+        <p class="section-desc">Most &quot;monetization plugins&quot; become a security disaster because runtime can
+          mutate data. AdKit splits responsibilities: <strong>Data Plane</strong> (runtime) = read-only ad matching;
+          <strong>Control Plane</strong> (admin) = ingestion, provisioning, admin operations. That separation is the
+          difference between a prototype and something you can put into production.</p>
+      </div>
 
-    <div class="arch-planes fade-in">
-      <!-- Data Plane -->
-      <div class="plane-card data">
-        <h3>Data Plane</h3>
-        <p class="plane-purpose">Ad matching, read-only retrieval</p>
-        <p class="plane-caller">Called by: LLMs / Agents</p>
-        <span class="plane-entry">uv run ad-mcp-data</span>
-        <ul class="tool-list">
-          <li><span class="tool-name">ads_match</span> <span class="tool-desc">&mdash; semantic ad matching with constraints, returns candidates + match_id</span></li>
-          <li><span class="tool-name">ads_explain</span> <span class="tool-desc">&mdash; audit trace for a prior match</span></li>
-          <li><span class="tool-name">ads_health</span> <span class="tool-desc">&mdash; liveness/readiness (Qdrant + embedding)</span></li>
-          <li><span class="tool-name">ads_capabilities</span> <span class="tool-desc">&mdash; supported placements, constraint keys, model, schema</span></li>
-        </ul>
+      <div class="arch-planes fade-in">
+        <!-- Data Plane -->
+        <div class="plane-card data">
+          <h3>Data Plane</h3>
+          <p class="plane-purpose">Ad matching, read-only retrieval</p>
+          <p class="plane-caller">Called by: LLMs / Agents</p>
+          <span class="plane-entry">uv run ad-mcp-data</span>
+          <ul class="tool-list">
+            <li><span class="tool-name">ads_match</span> <span class="tool-desc">&mdash; semantic ad matching with
+                constraints, returns candidates + match_id</span></li>
+            <li><span class="tool-name">ads_explain</span> <span class="tool-desc">&mdash; audit trace for a prior
+                match</span></li>
+            <li><span class="tool-name">ads_health</span> <span class="tool-desc">&mdash; liveness/readiness (Qdrant +
+                embedding)</span></li>
+            <li><span class="tool-name">ads_capabilities</span> <span class="tool-desc">&mdash; supported placements,
+                constraint keys, model, schema</span></li>
+          </ul>
+        </div>
+        <!-- Control Plane -->
+        <div class="plane-card control">
+          <h3>Control Plane</h3>
+          <p class="plane-purpose">Provisioning, ingestion, admin ops</p>
+          <p class="plane-caller">Called by: Humans, CI/CD, backoffice</p>
+          <span class="plane-entry">uv run ad-mcp-control</span>
+          <ul class="tool-list">
+            <li><span class="tool-name">collection_ensure</span> <span class="tool-desc">&mdash; create/align
+                collection</span></li>
+            <li><span class="tool-name">collection_info</span> <span class="tool-desc">&mdash; collection
+                metadata</span></li>
+            <li><span class="tool-name">collection_migrate</span> <span class="tool-desc">&mdash; schema
+                migrations</span></li>
+            <li><span class="tool-name">ads_upsert_batch</span> <span class="tool-desc">&mdash; batch ad
+                ingestion</span></li>
+            <li><span class="tool-name">ads_delete</span> <span class="tool-desc">&mdash; delete an ad by id</span></li>
+            <li><span class="tool-name">ads_bulk_disable</span> <span class="tool-desc">&mdash; disable ads by
+                filter</span></li>
+            <li><span class="tool-name">ads_get</span> <span class="tool-desc">&mdash; fetch a single ad</span></li>
+          </ul>
+        </div>
       </div>
-      <!-- Control Plane -->
-      <div class="plane-card control">
-        <h3>Control Plane</h3>
-        <p class="plane-purpose">Provisioning, ingestion, admin ops</p>
-        <p class="plane-caller">Called by: Humans, CI/CD, backoffice</p>
-        <span class="plane-entry">uv run ad-mcp-control</span>
-        <ul class="tool-list">
-          <li><span class="tool-name">collection_ensure</span> <span class="tool-desc">&mdash; create/align collection</span></li>
-          <li><span class="tool-name">collection_info</span> <span class="tool-desc">&mdash; collection metadata</span></li>
-          <li><span class="tool-name">collection_migrate</span> <span class="tool-desc">&mdash; schema migrations</span></li>
-          <li><span class="tool-name">ads_upsert_batch</span> <span class="tool-desc">&mdash; batch ad ingestion</span></li>
-          <li><span class="tool-name">ads_delete</span> <span class="tool-desc">&mdash; delete an ad by id</span></li>
-          <li><span class="tool-name">ads_bulk_disable</span> <span class="tool-desc">&mdash; disable ads by filter</span></li>
-          <li><span class="tool-name">ads_get</span> <span class="tool-desc">&mdash; fetch a single ad</span></li>
-        </ul>
+
+      <p class="section-desc fade-in" style="margin-top: 2rem;">For repository structure and setup details, see the <a
+          href="technical.html" style="color: var(--purple-300);">Technical Deep Dive</a>.</p>
+    </div>
+  </section>
+
+  <!-- KEY CAPABILITIES -->
+  <section id="capabilities">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Features</span>
+        <h2 class="section-title">Key capabilities</h2>
+      </div>
+      <div class="cards-grid fade-in">
+        <div class="card">
+          <div class="card-icon">&#127760;</div>
+          <h3>Semantic matching (not strings)</h3>
+          <p>Ads match the meaning of the context, not keywords.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9878;</div>
+          <h3>Typed targeting constraints</h3>
+          <p>Topics, locale, verticals, exclusions, policy flags (e.g., sensitive / age-restricted handling).</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128269;</div>
+          <h3>Explainability</h3>
+          <p>Every match can return an audit trace via <code>ads_explain</code>: why eligible, why others rejected,
+            filters applied, similarity score.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128274;</div>
+          <h3>Minimal MCP tool surface</h3>
+          <p>Runtime exposes only allowlisted tools: <code>ads_match</code>, <code>ads_explain</code>,
+            <code>ads_health</code>, <code>ads_capabilities</code>. No destructive ops at runtime. Period.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <p class="section-desc fade-in" style="margin-top: 2rem;">For repository structure and setup details, see the <a href="technical.html" style="color: var(--purple-300);">Technical Deep Dive</a>.</p>
-  </div>
-</section>
+  <!-- IMPLEMENTATION TIMELINE -->
+  <section id="setup">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Getting Started</span>
+        <h2 class="section-title">Implementation timeline (reduce friction)</h2>
+        <p class="section-desc"><strong>Typical setup (local &rarr; production)</strong></p>
+      </div>
 
-<!-- KEY CAPABILITIES -->
-<section id="capabilities">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Features</span>
-      <h2 class="section-title">Key capabilities</h2>
-    </div>
-    <div class="cards-grid fade-in">
-      <div class="card">
-        <div class="card-icon">&#127760;</div>
-        <h3>Semantic matching (not strings)</h3>
-        <p>Ads match the meaning of the context, not keywords.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">&#9878;</div>
-        <h3>Typed targeting constraints</h3>
-        <p>Topics, locale, verticals, exclusions, policy flags (e.g., sensitive / age-restricted handling).</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">&#128269;</div>
-        <h3>Explainability</h3>
-        <p>Every match can return an audit trace via <code>ads_explain</code>: why eligible, why others rejected, filters applied, similarity score.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">&#128274;</div>
-        <h3>Minimal MCP tool surface</h3>
-        <p>Runtime exposes only allowlisted tools: <code>ads_match</code>, <code>ads_explain</code>, <code>ads_health</code>, <code>ads_capabilities</code>. No destructive ops at runtime. Period.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- IMPLEMENTATION TIMELINE -->
-<section id="setup">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Getting Started</span>
-      <h2 class="section-title">Implementation timeline (reduce friction)</h2>
-      <p class="section-desc"><strong>Typical setup (local &rarr; production)</strong></p>
-    </div>
-
-    <div class="steps fade-in">
-      <div class="step">
-        <h3>Day 0: Run Qdrant + AdKit locally, load demo ads</h3>
-        <p>Install uv, start Qdrant, sync dependencies, create the collection, and seed demo ads.</p>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="code-block-lang">bash</span>
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          </div>
-          <pre><span class="code-comment"># Install uv (macOS/Linux)</span>
+      <div class="steps fade-in">
+        <div class="step">
+          <h3>Day 0: Run Qdrant + AdKit locally, load demo ads</h3>
+          <p>Install uv, start Qdrant, sync dependencies, create the collection, and seed demo ads.</p>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang">bash</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><span class="code-comment"># Install uv (macOS/Linux)</span>
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 <span class="code-comment"># Start Qdrant</span>
@@ -954,131 +1187,145 @@ uv run ad-index info      <span class="code-comment"># Verify: Points count shou
 
 <span class="code-comment"># Run Data Plane (LLM-facing)</span>
 uv run ad-mcp-data</pre>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>Day 1&ndash;2: Integrate MCP calls into your agent/RAG pipeline</h3>
+          <p>Wire <code>ads_match</code> into your agent&rsquo;s tool surface. Pass conversation context, page content,
+            or query text.</p>
+        </div>
+
+        <div class="step">
+          <h3>Week 1: Add your sponsor inventory + targeting rules</h3>
+          <p>Use the Control Plane to ingest ads, set topics, locale, verticals, and exclusions.</p>
+        </div>
+
+        <div class="step">
+          <h3>Week 2: Tighten policy + monitoring, ship to production</h3>
+          <p>Configure policy flags, add monitoring, and deploy. You control placement and rendering&mdash;AdKit just
+            returns candidates.</p>
         </div>
       </div>
+      <p class="section-desc fade-in" style="margin-top: 1rem;">You control placement and rendering. AdKit just returns
+        candidates.</p>
+    </div>
+  </section>
 
-      <div class="step">
-        <h3>Day 1&ndash;2: Integrate MCP calls into your agent/RAG pipeline</h3>
-        <p>Wire <code>ads_match</code> into your agent&rsquo;s tool surface. Pass conversation context, page content, or query text.</p>
-      </div>
-
-      <div class="step">
-        <h3>Week 1: Add your sponsor inventory + targeting rules</h3>
-        <p>Use the Control Plane to ingest ads, set topics, locale, verticals, and exclusions.</p>
-      </div>
-
-      <div class="step">
-        <h3>Week 2: Tighten policy + monitoring, ship to production</h3>
-        <p>Configure policy flags, add monitoring, and deploy. You control placement and rendering&mdash;AdKit just returns candidates.</p>
+  <!-- SECURITY & GOVERNANCE -->
+  <section id="security">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Enterprise</span>
+        <h2 class="section-title">Security &amp; governance (this closes exec deals)</h2>
+        <p class="section-desc">AdKit is built with a hard boundary:</p>
+        <ul class="section-desc" style="list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 0.5rem;">&bull; Runtime matching is read-only</li>
+          <li style="margin-bottom: 0.5rem;">&bull; Tools are explicitly allowlisted</li>
+          <li style="margin-bottom: 0.5rem;">&bull; Admin operations are isolated in a separate control service/process
+          </li>
+          <li style="margin-bottom: 0.5rem;">&bull; Optional auth scopes for each plane (<code>MCP_DATA_KEY</code>,
+            <code>MCP_ADMIN_KEY</code>)</li>
+        </ul>
+        <p class="section-desc" style="margin-top: 1rem;">This is what you want if you&rsquo;re selling into enterprise
+          environments or regulated verticals.</p>
       </div>
     </div>
-    <p class="section-desc fade-in" style="margin-top: 1rem;">You control placement and rendering. AdKit just returns candidates.</p>
-  </div>
-</section>
+  </section>
 
-<!-- SECURITY & GOVERNANCE -->
-<section id="security">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Enterprise</span>
-      <h2 class="section-title">Security &amp; governance (this closes exec deals)</h2>
-      <p class="section-desc">AdKit is built with a hard boundary:</p>
-      <ul class="section-desc" style="list-style: none; padding-left: 0;">
-        <li style="margin-bottom: 0.5rem;">&bull; Runtime matching is read-only</li>
-        <li style="margin-bottom: 0.5rem;">&bull; Tools are explicitly allowlisted</li>
-        <li style="margin-bottom: 0.5rem;">&bull; Admin operations are isolated in a separate control service/process</li>
-        <li style="margin-bottom: 0.5rem;">&bull; Optional auth scopes for each plane (<code>MCP_DATA_KEY</code>, <code>MCP_ADMIN_KEY</code>)</li>
-      </ul>
-      <p class="section-desc" style="margin-top: 1rem;">This is what you want if you&rsquo;re selling into enterprise environments or regulated verticals.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FAQs -->
-<section id="faqs">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Objections</span>
-      <h2 class="section-title">FAQs (objections you&rsquo;ll get)</h2>
-    </div>
-    <div class="faq-list fade-in">
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">How is this different from keyword targeting?</button>
-        <div class="faq-answer">Keywords break the moment language shifts. Semantic retrieval keeps relevance consistent without constant rule maintenance.</div>
+  <!-- FAQs -->
+  <section id="faqs">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Objections</span>
+        <h2 class="section-title">FAQs (objections you&rsquo;ll get)</h2>
       </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">Do we have to send data to a third party?</button>
-        <div class="faq-answer">No. Context embedding is local (FastEmbed) and storage is your Qdrant instance.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">Can we block advertisers / topics?</button>
-        <div class="faq-answer">Yes&mdash;typed exclusions and policy flags are first-class.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">Can we explain why an ad appeared?</button>
-        <div class="faq-answer">Yes&mdash;<code>ads_explain</code> returns an audit trace tied to a specific match.</div>
+      <div class="faq-list fade-in">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">How is this different from
+            keyword targeting?</button>
+          <div class="faq-answer">Keywords break the moment language shifts. Semantic retrieval keeps relevance
+            consistent without constant rule maintenance.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">Do we have to send data to a
+            third party?</button>
+          <div class="faq-answer">No. Context embedding is local (FastEmbed) and storage is your Qdrant instance.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">Can we block advertisers /
+            topics?</button>
+          <div class="faq-answer">Yes&mdash;typed exclusions and policy flags are first-class.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">Can we explain why an ad
+            appeared?</button>
+          <div class="faq-answer">Yes&mdash;<code>ads_explain</code> returns an audit trace tied to a specific match.
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <h3>Want native sponsor inserts that don&rsquo;t trash your product?</h3>
-    <p>If you&rsquo;re building MCP tooling, retrieval systems, or monetization for LLM apps, I&rsquo;m happy to pressure-test your architecture and integration plan.</p>
-    <div class="footer-links">
-      <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit%20integration%20call">Book a call</a>
-      <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit">Email me</a>
-      <a href="https://twitter.com/charoori_ai">Twitter</a>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <h3>Want native sponsor inserts that don&rsquo;t trash your product?</h3>
+      <p>If you&rsquo;re building MCP tooling, retrieval systems, or monetization for LLM apps, I&rsquo;m happy to
+        pressure-test your architecture and integration plan.</p>
+      <div class="footer-links">
+        <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit%20integration%20call">Book a call</a>
+        <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit">Email me</a>
+        <a href="https://twitter.com/charoori_ai">Twitter</a>
+      </div>
+      <div class="footer-coffee">
+        <a href="https://www.buymeacoffee.com/charoori_ai" target="_blank">
+          <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="35">
+        </a>
+      </div>
+      <p class="footer-bottom">AdKit &mdash; MIT License</p>
     </div>
-    <div class="footer-coffee">
-      <a href="https://www.buymeacoffee.com/charoori_ai" target="_blank">
-        <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="35">
-      </a>
-    </div>
-    <p class="footer-bottom">AdKit &mdash; MIT License</p>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // FAQ accordion
-  function toggleFaq(btn) {
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', !expanded);
-  }
+  <script>
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !expanded);
+    }
 
-  // Copy code
-  function copyCode(btn) {
-    const pre = btn.closest('.code-block').querySelector('pre');
-    const text = pre.textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = 'Copied!';
-      setTimeout(() => btn.textContent = 'Copy', 1500);
-    });
-  }
+    // Copy code
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      const text = pre.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 1500);
+      });
+    }
 
-  // Scroll fade-in
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Nav background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(15, 14, 23, 0.95)';
+      } else {
+        nav.style.background = 'rgba(15, 14, 23, 0.8)';
       }
     });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // Nav background on scroll
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-      nav.style.background = 'rgba(15, 14, 23, 0.95)';
-    } else {
-      nav.style.background = 'rgba(15, 14, 23, 0.8)';
-    }
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
