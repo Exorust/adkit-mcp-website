@@ -171,7 +171,7 @@
     .hero-content {
       position: relative;
       z-index: 1;
-      max-width: 800px;
+      max-width: 640px;
       padding: 2rem;
     }
 
@@ -181,31 +181,22 @@
       color: #fff;
       letter-spacing: -0.5px;
       line-height: 1.2;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
-    .hero-content .tagline {
-      font-size: clamp(1rem, 2.5vw, 1.5rem);
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 400;
-      font-style: italic;
-      margin-bottom: 2rem;
+    .hero-content .hero-subhead {
+      font-size: clamp(1.15rem, 2.8vw, 1.5rem);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
     }
 
-    .hero-content .subtitle {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.75);
-      max-width: 600px;
-      margin: 0 auto 1rem;
-      line-height: 1.7;
-    }
-
-    .hero-content .supporting {
+    .hero-content .hero-tagline {
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 600px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 2rem;
+      font-weight: 400;
     }
 
     .hero-badges {
@@ -213,7 +204,7 @@
       flex-wrap: wrap;
       gap: 0.5rem;
       justify-content: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .badge {
@@ -256,8 +247,9 @@
       display: flex;
       gap: 1rem;
       justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .btn {
@@ -296,6 +288,29 @@
       transform: translateY(-2px);
     }
 
+    .hero-buttons-secondary {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-pill {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      transition: all 0.2s;
+    }
+
+    .btn-pill:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
     .hero-links {
       display: flex;
       gap: 1.5rem;
@@ -304,9 +319,9 @@
     }
 
     .hero-links a {
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.65);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 500;
       transition: color 0.2s;
     }
@@ -816,6 +831,16 @@
         letter-spacing: -2px;
       }
 
+      .hero-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .hero-buttons-secondary {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
       .arch-planes {
         grid-template-columns: 1fr;
       }
@@ -930,11 +955,8 @@
     <div class="hero-arc-bl"></div>
     <div class="hero-content">
       <h1>AdKit MCP</h1>
-      <p class="hero-title">Native ads for AI products<br>without keyword hacks.</p>
-      <p class="subtitle">A lightweight semantic ad engine that lets your LLM app request relevant sponsor inserts using
-        natural language context</p>
-      <p class="supporting">What you get: higher relevance, cleaner architecture, and guardrails that keep production
-        sane.</p>
+      <p class="hero-subhead">Native ads for AI—semantic matching, not keyword hacks.</p>
+      <p class="hero-tagline">LLM-ready sponsor inserts via MCP.</p>
       <div class="hero-badges">
         <span class="badge"><span class="dot orange"></span>MCP-compatible</span>
         <span class="badge"><span class="dot blue"></span>Python 3.10+</span>
@@ -942,10 +964,11 @@
         <span class="badge"><span class="dot violet"></span>Dual-plane security</span>
       </div>
       <div class="hero-buttons">
-        <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit%20integration%20call" class="btn btn-primary">Book a
-          15-min integration call</a>
-        <a href="#architecture" class="btn btn-secondary">See the architecture</a>
-        <a href="#setup" class="btn btn-secondary">Try the demo</a>
+        <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit%20integration%20call" class="btn btn-primary">Book a 15-min call</a>
+        <span class="hero-buttons-secondary">
+          <a href="#architecture" class="btn-pill">See architecture</a>
+          <a href="#setup" class="btn-pill">Try demo</a>
+        </span>
       </div>
       <div class="hero-links">
         <a href="https://twitter.com/charoori_ai">Follow Updates</a>
@@ -965,9 +988,13 @@
           Most ad systems are brittle because they match strings. LLM apps need meaning-based matching.
         </p>
         <p class="section-desc">
-          AdKit matches ads semantically using embeddings + vector search, then applies typed constraints (topics,
-          locale, vertical, exclusions, policy flags). Your agent calls a tiny MCP tool surface: match, explain, health,
-          capabilities.
+          AdKit is a lightweight semantic ad engine: your LLM app requests relevant sponsor inserts using natural
+          language context, and AdKit matches ads semantically using embeddings + vector search. It applies typed
+          constraints (topics, locale, vertical, exclusions, policy flags). Your agent calls a tiny MCP tool surface:
+          match, explain, health, capabilities.
+        </p>
+        <p class="section-desc">
+          What you get: higher relevance, cleaner architecture, and guardrails that keep production sane.
         </p>
       </div>
     </div>
