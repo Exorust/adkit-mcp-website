@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
   <link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://db.onlinewebfonts.com/c/a473f32ddaf0ac9ecbafb5cb7c0ba67e?family=Posterama+Text+W07+Regular" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/a473f32ddaf0ac9ecbafb5cb7c0ba67e?family=Posterama+Text+W07+Regular"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     @font-face {
@@ -15,7 +17,13 @@
       src: url("https://db.onlinewebfonts.com/t/a473f32ddaf0ac9ecbafb5cb7c0ba67e.woff2") format("woff2");
     }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --purple-50: rgba(255, 255, 255, 0.25);
@@ -38,7 +46,9 @@
       --radius: 12px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Posterama', 'Posterama Text W07 Regular', sans-serif;
@@ -63,12 +73,41 @@
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
-    nav .logo { font-size: 1.4rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.5px; }
-    nav .logo span { color: var(--purple-400); }
-    nav .nav-links { display: flex; gap: 2rem; align-items: center; }
-    nav .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-    nav .nav-links a:hover { color: var(--text); }
-    nav .nav-links a.active { color: var(--purple-300); }
+
+    nav .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    nav .logo span {
+      color: var(--purple-400);
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav .nav-links a:hover {
+      color: var(--text);
+    }
+
+    nav .nav-links a.active {
+      color: var(--purple-300);
+    }
+
     nav .nav-cta {
       background: var(--purple-500);
       color: #fff !important;
@@ -77,29 +116,60 @@
       font-weight: 600;
       transition: background 0.2s, transform 0.15s;
     }
-    nav .nav-cta:hover { background: var(--purple-400); transform: translateY(-1px); }
-    .github-icon { display: inline-block; vertical-align: middle; width: 1.1em; height: 1.1em; margin-right: 0.4em; }
-    .mobile-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+    nav .nav-cta:hover {
+      background: var(--purple-400);
+      transform: translateY(-1px);
+    }
+
+    .github-icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 1.1em;
+      height: 1.1em;
+      margin-right: 0.4em;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
     .tech-hero {
       padding: 8rem 0 4rem;
       text-align: center;
       border-bottom: 1px solid var(--border);
     }
+
     .tech-hero h1 {
       font-size: 3rem;
       font-weight: 800;
       color: var(--text);
       margin-bottom: 0.5rem;
     }
+
     .tech-hero p {
       color: var(--text-muted);
       font-size: 1.1rem;
     }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 4rem 0; }
-    section:nth-child(even) { background: rgba(0, 0, 0, 0.08); }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    section:nth-child(even) {
+      background: rgba(0, 0, 0, 0.08);
+    }
 
     .section-label {
       display: inline-flex;
@@ -110,6 +180,7 @@
       color: var(--purple-400);
       margin-bottom: 1rem;
     }
+
     .section-title {
       font-size: 2rem;
       font-weight: 800;
@@ -117,6 +188,7 @@
       margin-bottom: 1rem;
       color: var(--text);
     }
+
     .section-desc {
       font-size: 1.05rem;
       color: var(--text-muted);
@@ -130,6 +202,7 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
+
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -137,11 +210,31 @@
       padding: 1.5rem;
       transition: transform 0.2s, border-color 0.2s;
     }
-    .card:hover { transform: translateY(-4px); border-color: var(--purple-500); }
-    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
-    .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
-    .arch-planes { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--purple-500);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .arch-planes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
     .plane-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -150,16 +243,37 @@
       position: relative;
       overflow: hidden;
     }
+
     .plane-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 3px;
     }
-    .plane-card.data::before { background: linear-gradient(90deg, var(--purple-400), var(--purple-300)); }
-    .plane-card.control::before { background: linear-gradient(90deg, var(--orange), #f97316); }
-    .plane-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
-    .plane-card .plane-purpose { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; }
+
+    .plane-card.data::before {
+      background: linear-gradient(90deg, var(--purple-400), var(--purple-300));
+    }
+
+    .plane-card.control::before {
+      background: linear-gradient(90deg, var(--orange), #f97316);
+    }
+
+    .plane-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .plane-card .plane-purpose {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
     .plane-card .plane-entry {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
@@ -170,7 +284,11 @@
       display: inline-block;
       margin-top: 0.5rem;
     }
-    .tool-list { list-style: none; }
+
+    .tool-list {
+      list-style: none;
+    }
+
     .tool-list li {
       padding: 0.5rem 0;
       border-bottom: 1px solid var(--border);
@@ -179,11 +297,27 @@
       gap: 0.5rem;
       align-items: baseline;
     }
-    .tool-list li:last-child { border-bottom: none; }
-    .tool-name { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--purple-300); white-space: nowrap; }
-    .tool-desc { color: var(--text-muted); font-size: 0.85rem; }
 
-    .code-block { margin-bottom: 1.5rem; }
+    .tool-list li:last-child {
+      border-bottom: none;
+    }
+
+    .tool-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--purple-300);
+      white-space: nowrap;
+    }
+
+    .tool-desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .code-block {
+      margin-bottom: 1.5rem;
+    }
+
     .code-block-header {
       display: flex;
       align-items: center;
@@ -194,7 +328,14 @@
       border-radius: var(--radius) var(--radius) 0 0;
       padding: 0.6rem 1rem;
     }
-    .code-block-lang { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; }
+
+    .code-block-lang {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
     .copy-btn {
       background: none;
       border: 1px solid var(--border);
@@ -206,7 +347,12 @@
       font-family: 'Posterama', 'Posterama Text W07 Regular', sans-serif;
       transition: all 0.15s;
     }
-    .copy-btn:hover { color: var(--text); border-color: var(--purple-500); }
+
+    .copy-btn:hover {
+      color: var(--text);
+      border-color: var(--purple-500);
+    }
+
     pre {
       background: var(--code-bg);
       border: 1px solid var(--border);
@@ -218,7 +364,10 @@
       line-height: 1.7;
       color: var(--text);
     }
-    .code-comment { color: rgba(255, 255, 255, 0.5); }
+
+    .code-comment {
+      color: rgba(255, 255, 255, 0.5);
+    }
 
     .repo-tree {
       background: var(--code-bg);
@@ -230,21 +379,34 @@
       line-height: 2;
       color: var(--text-muted);
     }
-    .repo-tree .folder { color: var(--purple-300); font-weight: 600; }
-    .repo-tree .comment { color: var(--text-dim); }
 
-    .steps { counter-reset: step-counter; }
+    .repo-tree .folder {
+      color: var(--purple-300);
+      font-weight: 600;
+    }
+
+    .repo-tree .comment {
+      color: var(--text-dim);
+    }
+
+    .steps {
+      counter-reset: step-counter;
+    }
+
     .step {
       position: relative;
       padding-left: 3.5rem;
       margin-bottom: 2rem;
     }
+
     .step::before {
       counter-increment: step-counter;
       content: counter(step-counter);
       position: absolute;
-      left: 0; top: 0;
-      width: 2.2rem; height: 2.2rem;
+      left: 0;
+      top: 0;
+      width: 2.2rem;
+      height: 2.2rem;
       background: var(--purple-500);
       color: #fff;
       font-weight: 700;
@@ -254,10 +416,22 @@
       justify-content: center;
       border-radius: 50%;
     }
-    .step h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
-    .step p { color: var(--text-muted); font-size: 0.95rem; }
 
-    td code, p code, li code {
+    .step h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .step p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    td code,
+    p code,
+    li code {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.85em;
       background: var(--code-bg);
@@ -271,167 +445,257 @@
       padding: 3rem 0;
       text-align: center;
     }
-    footer .footer-inner { max-width: 600px; margin: 0 auto; padding: 0 2rem; }
-    footer h3 { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 0.8rem; }
-    footer p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
-    .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
-    .footer-links a { color: var(--purple-300); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--purple-600); }
-    .footer-coffee { margin-bottom: 2rem; }
-    .footer-coffee a img { height: 35px; transition: transform 0.2s; }
-    .footer-coffee a:hover img { transform: scale(1.05); }
-    .footer-bottom { color: var(--text-dim); font-size: 0.8rem; }
+
+    footer .footer-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    footer h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--purple-300);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--purple-600);
+    }
+
+    .footer-coffee {
+      margin-bottom: 2rem;
+    }
+
+    .footer-coffee a img {
+      height: 35px;
+      transition: transform 0.2s;
+    }
+
+    .footer-coffee a:hover img {
+      transform: scale(1.05);
+    }
+
+    .footer-bottom {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
 
     .fade-in {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+      }
+
       .nav-links.open {
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 64px; left: 0; right: 0;
+        top: 64px;
+        left: 0;
+        right: 0;
         background: rgba(113, 98, 254, 0.98);
         padding: 1.5rem 2rem;
         border-bottom: 1px solid var(--border);
         gap: 1rem;
       }
-      .mobile-toggle { display: block; }
-      .arch-planes { grid-template-columns: 1fr; }
-      section { padding: 3rem 0; }
-      .section-title { font-size: 1.6rem; }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      .arch-planes {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<nav>
-  <a href="index.html" class="logo">Ad<span>Kit</span></a>
-  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
-  <div class="nav-links">
-    <a href="index.html#outcomes">Outcomes</a>
-    <a href="index.html#who">Who it's for</a>
-    <a href="index.html#architecture">Architecture</a>
-    <a href="index.html#setup">Get Started</a>
-    <a href="technical.html" class="active">Technical Deep Dive</a>
-    <a href="https://github.com/AdKit/adkit-mcp" class="nav-cta" target="_blank" rel="noopener noreferrer"><svg class="github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a>
-  </div>
-</nav>
-
-<div class="tech-hero">
-  <div class="container">
-    <h1>Technical Deep Dive</h1>
-    <p>Local embeddings, vector retrieval, dual-plane architecture, and setup details for engineers.</p>
-  </div>
-</div>
-
-<!-- TECHNICAL SUMMARY -->
-<section id="summary">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Overview</span>
-      <h2 class="section-title">Technical summary</h2>
-      <p class="section-desc">AdKit is built on a few core components. Context embedding stays local; storage and retrieval use your own infrastructure.</p>
+  <nav>
+    <a href="index.html" class="logo">Ad<span>Kit</span></a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
+      aria-label="Menu">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html#outcomes">Outcomes</a>
+      <a href="index.html#who">Who it's for</a>
+      <a href="index.html#architecture">Architecture</a>
+      <a href="index.html#setup">Get Started</a>
+      <a href="technical.html" class="active">Technical Deep Dive</a>
+      <a href="https://github.com/Exorust/Adkit-MCP" class="nav-cta" target="_blank" rel="noopener noreferrer"><svg
+          class="github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+          aria-hidden="true">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>GitHub</a>
     </div>
-    <div class="cards-grid fade-in">
-      <div class="card">
-        <h3>Local embeddings (FastEmbed)</h3>
-        <p>Context is embedded locally—no third-party API calls. FastEmbed runs in-process for low latency.</p>
-      </div>
-      <div class="card">
-        <h3>Vector retrieval (Qdrant)</h3>
-        <p>Ads are stored as vectors in Qdrant. Semantic search returns candidates by similarity score.</p>
-      </div>
-      <div class="card">
-        <h3>Typed constraints</h3>
-        <p>Topics, locale, verticals, exclusions, policy flags. Filters are applied after retrieval.</p>
-      </div>
-      <div class="card">
-        <h3>Dual-plane separation</h3>
-        <p>Data Plane (runtime) = read-only matching. Control Plane (admin) = ingestion and provisioning. Data Plane allowlist prevents destructive/admin tools at runtime.</p>
-      </div>
+  </nav>
+
+  <div class="tech-hero">
+    <div class="container">
+      <h1>Technical Deep Dive</h1>
+      <p>Local embeddings, vector retrieval, dual-plane architecture, and setup details for engineers.</p>
     </div>
   </div>
-</section>
 
-<!-- DUAL PLANE -->
-<section id="architecture">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Architecture</span>
-      <h2 class="section-title">Dual-plane design</h2>
-      <p class="section-desc">Two separate MCP server processes. Runtime never mutates data—that&rsquo;s the security boundary.</p>
-    </div>
-    <div class="arch-planes fade-in">
-      <div class="plane-card data">
-        <h3>Data Plane</h3>
-        <p class="plane-purpose">Ad matching, read-only retrieval. Called by LLMs / Agents.</p>
-        <span class="plane-entry">uv run ad-mcp-data</span>
-        <ul class="tool-list">
-          <li><span class="tool-name">ads_match</span> <span class="tool-desc">&mdash; semantic ad matching, returns candidates + match_id</span></li>
-          <li><span class="tool-name">ads_explain</span> <span class="tool-desc">&mdash; audit trace for a prior match</span></li>
-          <li><span class="tool-name">ads_health</span> <span class="tool-desc">&mdash; liveness/readiness</span></li>
-          <li><span class="tool-name">ads_capabilities</span> <span class="tool-desc">&mdash; placements, constraints, schema</span></li>
-        </ul>
+  <!-- TECHNICAL SUMMARY -->
+  <section id="summary">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Overview</span>
+        <h2 class="section-title">Technical summary</h2>
+        <p class="section-desc">AdKit is built on a few core components. Context embedding stays local; storage and
+          retrieval use your own infrastructure.</p>
       </div>
-      <div class="plane-card control">
-        <h3>Control Plane</h3>
-        <p class="plane-purpose">Provisioning, ingestion, admin. Called by Humans, CI/CD.</p>
-        <span class="plane-entry">uv run ad-mcp-control</span>
-        <ul class="tool-list">
-          <li><span class="tool-name">collection_ensure</span> <span class="tool-desc">&mdash; create/align collection</span></li>
-          <li><span class="tool-name">ads_upsert_batch</span> <span class="tool-desc">&mdash; batch ad ingestion</span></li>
-          <li><span class="tool-name">ads_delete</span> <span class="tool-desc">&mdash; delete an ad</span></li>
-          <li><span class="tool-name">ads_bulk_disable</span> <span class="tool-desc">&mdash; disable ads by filter</span></li>
-        </ul>
+      <div class="cards-grid fade-in">
+        <div class="card">
+          <h3>Local embeddings (FastEmbed)</h3>
+          <p>Context is embedded locally—no third-party API calls. FastEmbed runs in-process for low latency.</p>
+        </div>
+        <div class="card">
+          <h3>Vector retrieval (Qdrant)</h3>
+          <p>Ads are stored as vectors in Qdrant. Semantic search returns candidates by similarity score.</p>
+        </div>
+        <div class="card">
+          <h3>Typed constraints</h3>
+          <p>Topics, locale, verticals, exclusions, policy flags. Filters are applied after retrieval.</p>
+        </div>
+        <div class="card">
+          <h3>Dual-plane separation</h3>
+          <p>Data Plane (runtime) = read-only matching. Control Plane (admin) = ingestion and provisioning. Data Plane
+            allowlist prevents destructive/admin tools at runtime.</p>
+        </div>
       </div>
     </div>
-    <p class="section-desc fade-in" style="margin-top: 1.5rem;">Data Plane allowlist: only <code>ads_match</code>, <code>ads_explain</code>, <code>ads_health</code>, <code>ads_capabilities</code>. No destructive ops at runtime.</p>
-  </div>
-</section>
+  </section>
 
-<!-- REPO STRUCTURE -->
-<section id="repo">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Codebase</span>
-      <h2 class="section-title">Repository structure</h2>
-      <p class="section-desc">Core modules and responsibilities.</p>
+  <!-- DUAL PLANE -->
+  <section id="architecture">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Architecture</span>
+        <h2 class="section-title">Dual-plane design</h2>
+        <p class="section-desc">Two separate MCP server processes. Runtime never mutates data—that&rsquo;s the security
+          boundary.</p>
+      </div>
+      <div class="arch-planes fade-in">
+        <div class="plane-card data">
+          <h3>Data Plane</h3>
+          <p class="plane-purpose">Ad matching, read-only retrieval. Called by LLMs / Agents.</p>
+          <span class="plane-entry">uv run ad-mcp-data</span>
+          <ul class="tool-list">
+            <li><span class="tool-name">ads_match</span> <span class="tool-desc">&mdash; semantic ad matching, returns
+                candidates + match_id</span></li>
+            <li><span class="tool-name">ads_explain</span> <span class="tool-desc">&mdash; audit trace for a prior
+                match</span></li>
+            <li><span class="tool-name">ads_health</span> <span class="tool-desc">&mdash; liveness/readiness</span></li>
+            <li><span class="tool-name">ads_capabilities</span> <span class="tool-desc">&mdash; placements, constraints,
+                schema</span></li>
+          </ul>
+        </div>
+        <div class="plane-card control">
+          <h3>Control Plane</h3>
+          <p class="plane-purpose">Provisioning, ingestion, admin. Called by Humans, CI/CD.</p>
+          <span class="plane-entry">uv run ad-mcp-control</span>
+          <ul class="tool-list">
+            <li><span class="tool-name">collection_ensure</span> <span class="tool-desc">&mdash; create/align
+                collection</span></li>
+            <li><span class="tool-name">ads_upsert_batch</span> <span class="tool-desc">&mdash; batch ad
+                ingestion</span></li>
+            <li><span class="tool-name">ads_delete</span> <span class="tool-desc">&mdash; delete an ad</span></li>
+            <li><span class="tool-name">ads_bulk_disable</span> <span class="tool-desc">&mdash; disable ads by
+                filter</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="section-desc fade-in" style="margin-top: 1.5rem;">Data Plane allowlist: only <code>ads_match</code>,
+        <code>ads_explain</code>, <code>ads_health</code>, <code>ads_capabilities</code>. No destructive ops at runtime.
+      </p>
     </div>
-    <div class="repo-tree fade-in">
-      <span class="folder">src/ad_injector/</span><br>
-      &nbsp;&nbsp;<span class="folder">models/</span> <span class="comment"># Ad, Targeting, Policy; MCP request/response DTOs</span><br>
-      &nbsp;&nbsp;<span class="folder">services/</span> <span class="comment"># MatchService, PolicyEngine, TargetingEngine, IndexService</span><br>
-      &nbsp;&nbsp;<span class="folder">adapters/</span> <span class="comment"># QdrantVectorStore, FastEmbedProvider</span><br>
-      &nbsp;&nbsp;<span class="folder">mcp/</span> <span class="comment"># server, tools, auth, observability</span><br>
-      &nbsp;&nbsp;<span class="folder">config/</span> <span class="comment"># RuntimeSettings, env vars</span><br>
-      &nbsp;&nbsp;<span class="folder">ops/</span> <span class="comment"># smoke_check, migrations</span>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- SETUP -->
-<section id="setup">
-  <div class="container">
-    <div class="fade-in">
-      <span class="section-label">Setup</span>
-      <h2 class="section-title">Local setup &amp; demo</h2>
-      <p class="section-desc">Prerequisites: Python 3.10+, uv, Docker (for Qdrant).</p>
+  <!-- REPO STRUCTURE -->
+  <section id="repo">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Codebase</span>
+        <h2 class="section-title">Repository structure</h2>
+        <p class="section-desc">Core modules and responsibilities.</p>
+      </div>
+      <div class="repo-tree fade-in">
+        <span class="folder">src/ad_injector/</span><br>
+        &nbsp;&nbsp;<span class="folder">models/</span> <span class="comment"># Ad, Targeting, Policy; MCP
+          request/response DTOs</span><br>
+        &nbsp;&nbsp;<span class="folder">services/</span> <span class="comment"># MatchService, PolicyEngine,
+          TargetingEngine, IndexService</span><br>
+        &nbsp;&nbsp;<span class="folder">adapters/</span> <span class="comment"># QdrantVectorStore,
+          FastEmbedProvider</span><br>
+        &nbsp;&nbsp;<span class="folder">mcp/</span> <span class="comment"># server, tools, auth,
+          observability</span><br>
+        &nbsp;&nbsp;<span class="folder">config/</span> <span class="comment"># RuntimeSettings, env vars</span><br>
+        &nbsp;&nbsp;<span class="folder">ops/</span> <span class="comment"># smoke_check, migrations</span>
+      </div>
     </div>
-    <div class="steps fade-in">
-      <div class="step">
-        <h3>Install uv</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="code-block-lang">bash</span>
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          </div>
-          <pre><span class="code-comment"># macOS/Linux</span>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup">
+    <div class="container">
+      <div class="fade-in">
+        <span class="section-label">Setup</span>
+        <h2 class="section-title">Local setup &amp; demo</h2>
+        <p class="section-desc">Prerequisites: Python 3.10+, uv, Docker (for Qdrant).</p>
+      </div>
+      <div class="steps fade-in">
+        <div class="step">
+          <h3>Install uv</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang">bash</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><span class="code-comment"># macOS/Linux</span>
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 <span class="code-comment"># Windows (PowerShell)</span>
@@ -439,90 +703,97 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 
 <span class="code-comment"># Or with pip</span>
 pip install uv</pre>
-        </div>
-      </div>
-      <div class="step">
-        <h3>Start Qdrant</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="code-block-lang">bash</span>
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
           </div>
-          <pre>docker run -d --name qdrant -p 6333:6333 -p 6334:6334 qdrant/qdrant
+        </div>
+        <div class="step">
+          <h3>Start Qdrant</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang">bash</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre>docker run -d --name qdrant -p 6333:6333 -p 6334:6334 qdrant/qdrant
 docker ps --filter name=qdrant</pre>
-        </div>
-      </div>
-      <div class="step">
-        <h3>Sync, create collection, seed ads</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="code-block-lang">bash</span>
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
           </div>
-          <pre>uv sync
+        </div>
+        <div class="step">
+          <h3>Sync, create collection, seed ads</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang">bash</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre>uv sync
 uv run ad-index create
 uv run ad-index seed
 uv run ad-index info      <span class="code-comment"># Verify: Points count should be 5</span></pre>
-        </div>
-      </div>
-      <div class="step">
-        <h3>Run the servers</h3>
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="code-block-lang">bash</span>
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
           </div>
-          <pre><span class="code-comment"># Data Plane (LLM-facing, read-only)</span>
+        </div>
+        <div class="step">
+          <h3>Run the servers</h3>
+          <div class="code-block">
+            <div class="code-block-header">
+              <span class="code-block-lang">bash</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><span class="code-comment"># Data Plane (LLM-facing, read-only)</span>
 uv run ad-mcp-data
 
 <span class="code-comment"># Control Plane (admin, separate terminal)</span>
 uv run ad-mcp-control</pre>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="footer-inner">
-    <h3>Want native sponsor inserts that don&rsquo;t trash your product?</h3>
-    <p>If you&rsquo;re building MCP tooling, retrieval systems, or monetization for LLM apps, I&rsquo;m happy to pressure-test your architecture and integration plan.</p>
-    <div class="footer-links">
-      <a href="https://github.com/AdKit/adkit-mcp" target="_blank" rel="noopener noreferrer"><svg class="github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>GitHub</a>
-      <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit">Email me</a>
-      <a href="https://twitter.com/charoori_ai">Twitter</a>
+  <footer>
+    <div class="footer-inner">
+      <h3>Want native sponsor inserts that don&rsquo;t trash your product?</h3>
+      <p>If you&rsquo;re building MCP tooling, retrieval systems, or monetization for LLM apps, I&rsquo;m happy to
+        pressure-test your architecture and integration plan.</p>
+      <div class="footer-links">
+        <a href="https://github.com/Exorust/Adkit-MCP" target="_blank" rel="noopener noreferrer"><svg
+            class="github-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            aria-hidden="true">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>GitHub</a>
+        <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit">Email me</a>
+        <a href="https://twitter.com/charoori_ai">Twitter</a>
+      </div>
+      <div class="footer-coffee">
+        <a href="https://www.buymeacoffee.com/charoori_ai" target="_blank">
+          <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="35">
+        </a>
+      </div>
+      <p class="footer-bottom">AdKit &mdash; MIT License</p>
     </div>
-    <div class="footer-coffee">
-      <a href="https://www.buymeacoffee.com/charoori_ai" target="_blank">
-        <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="35">
-      </a>
-    </div>
-    <p class="footer-bottom">AdKit &mdash; MIT License</p>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  function copyCode(btn) {
-    const pre = btn.closest('.code-block').querySelector('pre');
-    const text = pre.textContent;
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = 'Copied!';
-      setTimeout(() => btn.textContent = 'Copy', 1500);
+  <script>
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      const text = pre.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy', 1500);
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.background = window.scrollY > 50 ? 'rgba(113, 98, 254, 0.98)' : 'rgba(113, 98, 254, 0.95)';
     });
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    nav.style.background = window.scrollY > 50 ? 'rgba(113, 98, 254, 0.98)' : 'rgba(113, 98, 254, 0.95)';
-  });
-</script>
+  </script>
 
 </body>
+
 </html>
