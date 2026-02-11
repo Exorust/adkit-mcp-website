@@ -11,23 +11,23 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --purple-50: #f3f0ff;
-      --purple-100: #e5deff;
-      --purple-200: #cdbdff;
+      --purple-50: #f8f5ff;
+      --purple-100: #ede6ff;
+      --purple-200: #ddd0ff;
       --purple-300: #a78bfa;
       --purple-400: #8b6cf7;
       --purple-500: #6c5ce7;
       --purple-600: #5b4bd4;
       --purple-700: #4a3ab8;
       --orange: #f59e42;
-      --bg: #0f0e17;
-      --bg-card: #1a1830;
-      --bg-card-hover: #221f3a;
-      --text: #e8e6f0;
-      --text-muted: #a09cb5;
-      --text-dim: #6b6785;
-      --border: #2d2a45;
-      --code-bg: #15132a;
+      --bg: #f0ebff;
+      --bg-card: #f8f5ff;
+      --bg-card-hover: #ebe5ff;
+      --text: #2d2a45;
+      --text-muted: #5b5675;
+      --text-dim: #7a7595;
+      --border: #d4cce8;
+      --code-bg: #e8e4f5;
       --radius: 12px;
     }
 
@@ -52,15 +52,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(15, 14, 23, 0.8);
+      background: rgba(240, 235, 255, 0.9);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
-    nav .logo { font-size: 1.4rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -0.5px; }
+    nav .logo { font-size: 1.4rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.5px; }
     nav .logo span { color: var(--purple-400); }
     nav .nav-links { display: flex; gap: 2rem; align-items: center; }
     nav .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-    nav .nav-links a:hover { color: #fff; }
+    nav .nav-links a:hover { color: var(--text); }
     nav .nav-links a.active { color: var(--purple-300); }
     nav .nav-cta {
       background: var(--purple-500);
@@ -79,9 +79,9 @@
       border-bottom: 1px solid var(--border);
     }
     .tech-hero h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 0.5rem;
     }
     .tech-hero p {
@@ -91,7 +91,7 @@
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
     section { padding: 4rem 0; }
-    section:nth-child(even) { background: rgba(26, 24, 48, 0.4); }
+    section:nth-child(even) { background: rgba(221, 214, 254, 0.5); }
 
     .section-label {
       display: inline-flex;
@@ -107,7 +107,7 @@
       font-weight: 800;
       letter-spacing: -1px;
       margin-bottom: 1rem;
-      color: #fff;
+      color: var(--text);
     }
     .section-desc {
       font-size: 1.05rem;
@@ -130,7 +130,7 @@
       transition: transform 0.2s, border-color 0.2s;
     }
     .card:hover { transform: translateY(-4px); border-color: var(--purple-500); }
-    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; }
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
     .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
 
     .arch-planes { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -150,7 +150,7 @@
     }
     .plane-card.data::before { background: linear-gradient(90deg, var(--purple-400), var(--purple-300)); }
     .plane-card.control::before { background: linear-gradient(90deg, var(--orange), #f97316); }
-    .plane-card h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+    .plane-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
     .plane-card .plane-purpose { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; }
     .plane-card .plane-entry {
       font-family: 'JetBrains Mono', monospace;
@@ -180,7 +180,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #1e1b38;
+      background: #e0daf5;
       border: 1px solid var(--border);
       border-bottom: none;
       border-radius: var(--radius) var(--radius) 0 0;
@@ -246,7 +246,7 @@
       justify-content: center;
       border-radius: 50%;
     }
-    .step h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .step h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
     .step p { color: var(--text-muted); font-size: 0.95rem; }
 
     td code, p code, li code {
@@ -264,11 +264,11 @@
       text-align: center;
     }
     footer .footer-inner { max-width: 600px; margin: 0 auto; padding: 0 2rem; }
-    footer h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; }
+    footer h3 { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 0.8rem; }
     footer p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
     .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
     .footer-links a { color: var(--purple-300); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--purple-200); }
+    .footer-links a:hover { color: var(--purple-600); }
     .footer-coffee { margin-bottom: 2rem; }
     .footer-coffee a img { height: 35px; transition: transform 0.2s; }
     .footer-coffee a:hover img { transform: scale(1.05); }
@@ -288,7 +288,7 @@
         flex-direction: column;
         position: absolute;
         top: 64px; left: 0; right: 0;
-        background: rgba(15, 14, 23, 0.97);
+        background: rgba(240, 235, 255, 0.98);
         padding: 1.5rem 2rem;
         border-bottom: 1px solid var(--border);
         gap: 1rem;
@@ -512,7 +512,7 @@ uv run ad-mcp-control</pre>
 
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
-    nav.style.background = window.scrollY > 50 ? 'rgba(15, 14, 23, 0.95)' : 'rgba(15, 14, 23, 0.8)';
+    nav.style.background = window.scrollY > 50 ? 'rgba(240, 235, 255, 0.98)' : 'rgba(240, 235, 255, 0.9)';
   });
 </script>
 
