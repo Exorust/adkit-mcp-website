@@ -4,37 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AdKit — Technical Deep Dive</title>
+  <link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/a473f32ddaf0ac9ecbafb5cb7c0ba67e?family=Posterama+Text+W07+Regular" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: "Posterama";
+      src: url("https://db.onlinewebfonts.com/t/a473f32ddaf0ac9ecbafb5cb7c0ba67e.woff2") format("woff2");
+    }
+
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --purple-50: #f8f5ff;
-      --purple-100: #ede6ff;
+      --purple-50: rgba(255, 255, 255, 0.25);
+      --purple-100: rgba(255, 255, 255, 0.2);
       --purple-200: #ddd0ff;
       --purple-300: #a78bfa;
-      --purple-400: #8b6cf7;
-      --purple-500: #6c5ce7;
-      --purple-600: #5b4bd4;
+      --purple-400: #9d8fff;
+      --purple-500: #7162fe;
+      --purple-600: #5f4fd4;
       --purple-700: #4a3ab8;
       --orange: #f59e42;
-      --bg: #f0ebff;
-      --bg-card: #f8f5ff;
-      --bg-card-hover: #ebe5ff;
-      --text: #2d2a45;
-      --text-muted: #5b5675;
-      --text-dim: #7a7595;
-      --border: #d4cce8;
-      --code-bg: #e8e4f5;
+      --bg: #7162fe;
+      --bg-card: rgba(255, 255, 255, 0.12);
+      --bg-card-hover: rgba(255, 255, 255, 0.2);
+      --text: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.85);
+      --text-dim: rgba(255, 255, 255, 0.65);
+      --border: rgba(255, 255, 255, 0.2);
+      --code-bg: rgba(0, 0, 0, 0.25);
       --radius: 12px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Posterama', 'Posterama Text W07 Regular', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
@@ -52,7 +59,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(240, 235, 255, 0.9);
+      background: rgba(113, 98, 254, 0.95);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -91,7 +98,7 @@
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
     section { padding: 4rem 0; }
-    section:nth-child(even) { background: rgba(221, 214, 254, 0.5); }
+    section:nth-child(even) { background: rgba(0, 0, 0, 0.08); }
 
     .section-label {
       display: inline-flex;
@@ -180,7 +187,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #e0daf5;
+      background: rgba(255, 255, 255, 0.15);
       border: 1px solid var(--border);
       border-bottom: none;
       border-radius: var(--radius) var(--radius) 0 0;
@@ -195,7 +202,7 @@
       border-radius: 6px;
       font-size: 0.75rem;
       cursor: pointer;
-      font-family: inherit;
+      font-family: 'Posterama', 'Posterama Text W07 Regular', sans-serif;
       transition: all 0.15s;
     }
     .copy-btn:hover { color: var(--text); border-color: var(--purple-500); }
@@ -210,7 +217,7 @@
       line-height: 1.7;
       color: var(--text);
     }
-    .code-comment { color: #6b6785; }
+    .code-comment { color: rgba(255, 255, 255, 0.5); }
 
     .repo-tree {
       background: var(--code-bg);
@@ -288,7 +295,7 @@
         flex-direction: column;
         position: absolute;
         top: 64px; left: 0; right: 0;
-        background: rgba(240, 235, 255, 0.98);
+        background: rgba(113, 98, 254, 0.98);
         padding: 1.5rem 2rem;
         border-bottom: 1px solid var(--border);
         gap: 1rem;
@@ -512,7 +519,7 @@ uv run ad-mcp-control</pre>
 
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
-    nav.style.background = window.scrollY > 50 ? 'rgba(240, 235, 255, 0.98)' : 'rgba(240, 235, 255, 0.9)';
+    nav.style.background = window.scrollY > 50 ? 'rgba(113, 98, 254, 0.98)' : 'rgba(113, 98, 254, 0.95)';
   });
 </script>
 
