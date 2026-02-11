@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdKit — MCP Server for Injecting Ads</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --purple-50: #f3f0ff;
+      --purple-100: #e5deff;
+      --purple-200: #cdbdff;
+      --purple-300: #a78bfa;
+      --purple-400: #8b6cf7;
+      --purple-500: #6c5ce7;
+      --purple-600: #5b4bd4;
+      --purple-700: #4a3ab8;
+      --purple-800: #3a2d8e;
+      --purple-900: #2a1f6e;
+      --orange: #f59e42;
+      --green: #22c55e;
+      --bg: #0f0e17;
+      --bg-card: #1a1830;
+      --bg-card-hover: #221f3a;
+      --text: #e8e6f0;
+      --text-muted: #a09cb5;
+      --text-dim: #6b6785;
+      --border: #2d2a45;
+      --code-bg: #15132a;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 14, 23, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    nav .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    nav .logo span { color: var(--purple-400); }
+    nav .nav-links { display: flex; gap: 2rem; align-items: center; }
+    nav .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover { color: #fff; }
+    nav .nav-cta {
+      background: var(--purple-500);
+      color: #fff !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s;
+    }
+    nav .nav-cta:hover { background: var(--purple-400); transform: translateY(-1px); }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #4a3ab8 0%, #6c5ce7 40%, #7c6df0 70%, #8b7cf5 100%);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-arc-tr {
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      border: 50px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+    }
+    .hero-arc-bl {
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      border: 50px solid rgba(255,255,255,0.10);
+      border-radius: 50%;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 2rem;
+    }
+    .hero-content h1 {
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -3px;
+      line-height: 1;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .hero-content .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .hero-content .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+    .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .badge .dot.blue { background: #3b82f6; }
+    .badge .dot.green { background: #22c55e; }
+    .badge .dot.violet { background: #a78bfa; }
+    .badge .dot.orange { background: #f59e42; }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: #fff;
+      color: var(--purple-700);
+    }
+    .btn-primary:hover { background: var(--purple-50); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+    .hero-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .hero-links a:hover { color: #fff; }
+
+    /* ── SECTIONS ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 6rem 0;
+    }
+    section:nth-child(even) {
+      background: rgba(26, 24, 48, 0.4);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--purple-400);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .section-desc {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    /* ── CARDS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--purple-500);
+      background: var(--bg-card-hover);
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      background: rgba(108, 92, 231, 0.15);
+    }
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: #fff;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── ARCHITECTURE ── */
+    .arch-planes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .plane-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .plane-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+    .plane-card.data::before { background: linear-gradient(90deg, var(--purple-400), var(--purple-300)); }
+    .plane-card.control::before { background: linear-gradient(90deg, var(--orange), #f97316); }
+    .plane-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .plane-card .plane-purpose {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+    .plane-card .plane-caller {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .plane-card .plane-entry {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--purple-300);
+      background: var(--code-bg);
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+    }
+    .tool-list {
+      list-style: none;
+    }
+    .tool-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: baseline;
+    }
+    .tool-list li:last-child { border-bottom: none; }
+    .tool-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--purple-300);
+      white-space: nowrap;
+    }
+    .tool-desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ── TABLES ── */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th {
+      background: var(--bg-card);
+      color: var(--purple-300);
+      text-align: left;
+      padding: 0.9rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 0.75rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(108, 92, 231, 0.04); }
+    td code, p code, li code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      background: var(--code-bg);
+      color: var(--purple-300);
+      padding: 0.15em 0.45em;
+      border-radius: 4px;
+    }
+
+    /* ── CODE BLOCKS ── */
+    .code-block {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1e1b38;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      border-radius: var(--radius) var(--radius) 0 0;
+      padding: 0.6rem 1rem;
+    }
+    .code-block-lang {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .copy-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.15s;
+    }
+    .copy-btn:hover { color: var(--text); border-color: var(--purple-500); }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 0 0 var(--radius) var(--radius);
+      padding: 1.2rem 1.4rem;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    pre.standalone {
+      border-radius: var(--radius);
+    }
+    .code-comment { color: #6b6785; }
+    .code-string { color: #a8e6a1; }
+    .code-keyword { color: #c084fc; }
+    .code-function { color: #93c5fd; }
+    .code-var { color: #fbbf24; }
+
+    /* ── STEPS ── */
+    .steps {
+      counter-reset: step-counter;
+    }
+    .step {
+      position: relative;
+      padding-left: 3.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .step::before {
+      counter-increment: step-counter;
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.2rem;
+      height: 2.2rem;
+      background: var(--purple-500);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .step::after {
+      content: '';
+      position: absolute;
+      left: calc(1.1rem - 1px);
+      top: 2.5rem;
+      bottom: -1.5rem;
+      width: 2px;
+      background: var(--border);
+    }
+    .step:last-child::after { display: none; }
+    .step h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.6rem;
+    }
+    .step p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ── REPO TREE ── */
+    .repo-tree {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 2;
+      color: var(--text-muted);
+    }
+    .repo-tree .folder { color: var(--purple-300); font-weight: 600; }
+    .repo-tree .comment { color: var(--text-dim); }
+
+    /* ── JSON BLOCK ── */
+    .json-key { color: #93c5fd; }
+    .json-string { color: #a8e6a1; }
+    .json-number { color: #fbbf24; }
+
+    /* ── SCHEMA SECTION ── */
+    .schema-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+      text-align: center;
+    }
+    footer .footer-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    footer h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--purple-300);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--purple-200); }
+    .footer-coffee {
+      margin-bottom: 2rem;
+    }
+    .footer-coffee a img {
+      height: 35px;
+      transition: transform 0.2s;
+    }
+    .footer-coffee a:hover img { transform: scale(1.05); }
+    .footer-bottom {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(15, 14, 23, 0.97);
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid var(--border);
+        gap: 1rem;
+      }
+      .mobile-toggle { display: block; }
+      .hero-content h1 { letter-spacing: -2px; }
+      .arch-planes { grid-template-columns: 1fr; }
+      .schema-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 0; }
+      .section-title { font-size: 2rem; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Ad<span>Kit</span></a>
+  <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  <div class="nav-links">
+    <a href="#use-cases">Use Cases</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#setup">Setup</a>
+    <a href="#schema">Schema</a>
+    <a href="#api">API</a>
+    <a href="#" class="nav-cta">GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-arc-tr"></div>
+  <div class="hero-arc-bl"></div>
+  <div class="hero-content">
+    <h1>AdKit</h1>
+    <p class="tagline">&lt; MCP Server for Injecting Ads &gt;</p>
+    <p class="subtitle">A lightweight, semantic ad-engine for LLMs, available through MCP. Match ads by meaning, not strings.</p>
+    <div class="hero-badges">
+      <span class="badge"><span class="dot blue"></span>Python 3.10+</span>
+      <span class="badge"><span class="dot green"></span>MIT License</span>
+      <span class="badge"><span class="dot violet"></span>Data / Control Plane</span>
+      <span class="badge"><span class="dot orange"></span>MCP Compatible</span>
+    </div>
+    <div class="hero-buttons">
+      <a href="#setup" class="btn btn-primary">Get Started</a>
+      <a href="#architecture" class="btn btn-secondary">View Architecture</a>
+    </div>
+    <div class="hero-links">
+      <a href="https://twitter.com/charoori_ai">Follow Updates</a>
+      <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit">Contact &amp; Feedback</a>
+      <a href="https://www.buymeacoffee.com/charoori_ai">Buy Me a Coffee</a>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS / INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Introduction</span>
+      <h2 class="section-title">A simple MCP Server that serves<br>advertisements to LLMs</h2>
+      <p class="section-desc">
+        <strong>AdKit</strong> is a lightweight semantic ad-matching engine built for <strong>LLM applications</strong>. It exposes a small, safe tool surface via <strong>MCP</strong> so agents can request relevant ads using natural-language context &mdash; chat turns, page content, search queries &mdash; without brittle keyword rules.
+      </p>
+      <p class="section-desc">
+        Under the hood, AdKit embeds your context locally (FastEmbed) and retrieves candidates from <strong>Qdrant</strong> using vector similarity plus <strong>typed constraints</strong> (topics, locale, verticals, exclusions, policy flags). It's designed with a hard security boundary: the <strong>Data Plane</strong> is read-only and allowlisted, while the <strong>Control Plane</strong> handles ingestion and admin operations separately.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="use-cases">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Use Cases</span>
+      <h2 class="section-title">Where can you use this?</h2>
+      <p class="section-desc">Native ad placement that matches meaning, not strings &mdash; for any LLM-powered product.</p>
+    </div>
+    <div class="cards-grid fade-in">
+      <div class="card">
+        <div class="card-icon">&#129302;</div>
+        <h3>AI Agents &amp; Assistants</h3>
+        <p>Seamlessly inject relevant product recommendations or sponsored messages into chat interfaces &mdash; customer support bots, shopping assistants, and more.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128269;</div>
+        <h3>RAG Pipelines</h3>
+        <p>Serve "sponsored context" alongside organic retrieval results, allowing for high-relevance native advertising in search or Q&amp;A tools.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#128161;</div>
+        <h3>Content Discovery</h3>
+        <p>Power "You might also like" features or affiliate link insertion based on semantic meaning, rather than fragile keyword matching.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Architecture</span>
+      <h2 class="section-title">Dual-plane design</h2>
+      <p class="section-desc">The system is split into two MCP server planes with a hard security boundary. Run two separate processes for production: one Control Plane (admin) and one Data Plane (runtime). Each has its own auth scope.</p>
+    </div>
+
+    <div class="arch-planes fade-in">
+      <!-- Data Plane -->
+      <div class="plane-card data">
+        <h3>Data Plane</h3>
+        <p class="plane-purpose">Ad matching, read-only retrieval</p>
+        <p class="plane-caller">Called by: LLMs / Agents</p>
+        <span class="plane-entry">uv run ad-mcp-data</span>
+        <ul class="tool-list">
+          <li><span class="tool-name">ads_match</span> <span class="tool-desc">&mdash; semantic ad matching with constraints, returns candidates + match_id</span></li>
+          <li><span class="tool-name">ads_explain</span> <span class="tool-desc">&mdash; audit trace for a prior match</span></li>
+          <li><span class="tool-name">ads_health</span> <span class="tool-desc">&mdash; liveness/readiness (Qdrant + embedding)</span></li>
+          <li><span class="tool-name">ads_capabilities</span> <span class="tool-desc">&mdash; supported placements, constraint keys, model, schema</span></li>
+        </ul>
+      </div>
+      <!-- Control Plane -->
+      <div class="plane-card control">
+        <h3>Control Plane</h3>
+        <p class="plane-purpose">Provisioning, ingestion, admin ops</p>
+        <p class="plane-caller">Called by: Humans, CI/CD, backoffice</p>
+        <span class="plane-entry">uv run ad-mcp-control</span>
+        <ul class="tool-list">
+          <li><span class="tool-name">collection_ensure</span> <span class="tool-desc">&mdash; create/align collection</span></li>
+          <li><span class="tool-name">collection_info</span> <span class="tool-desc">&mdash; collection metadata</span></li>
+          <li><span class="tool-name">collection_migrate</span> <span class="tool-desc">&mdash; schema migrations</span></li>
+          <li><span class="tool-name">ads_upsert_batch</span> <span class="tool-desc">&mdash; batch ad ingestion</span></li>
+          <li><span class="tool-name">ads_delete</span> <span class="tool-desc">&mdash; delete an ad by id</span></li>
+          <li><span class="tool-name">ads_bulk_disable</span> <span class="tool-desc">&mdash; disable ads by filter</span></li>
+          <li><span class="tool-name">ads_get</span> <span class="tool-desc">&mdash; fetch a single ad</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Repo structure -->
+    <div class="fade-in">
+      <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 1rem;">Repository Structure</h3>
+      <div class="repo-tree">
+        <span class="folder">src/ad_injector/</span><br>
+        &nbsp;&nbsp;<span class="folder">models/</span> <span class="comment"># Ad, Targeting, Policy; MCP request/response DTOs</span><br>
+        &nbsp;&nbsp;<span class="folder">services/</span> <span class="comment"># MatchService, PolicyEngine, TargetingEngine, IndexService</span><br>
+        &nbsp;&nbsp;<span class="folder">adapters/</span> <span class="comment"># QdrantVectorStore, FastEmbedProvider</span><br>
+        &nbsp;&nbsp;<span class="folder">mcp/</span> <span class="comment"># server, tools, auth, observability</span><br>
+        &nbsp;&nbsp;<span class="folder">config/</span> <span class="comment"># RuntimeSettings, env vars</span><br>
+        &nbsp;&nbsp;<span class="folder">ops/</span> <span class="comment"># smoke_check, migrations</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP -->
+<section id="setup">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Getting Started</span>
+      <h2 class="section-title">Setup &amp; Demo</h2>
+      <p class="section-desc">Get up and running with AdKit in minutes. Prerequisites: Python 3.10+, uv, and Qdrant.</p>
+    </div>
+
+    <div class="steps fade-in">
+      <div class="step">
+        <h3>Install uv</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><span class="code-comment"># macOS/Linux</span>
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+<span class="code-comment"># Windows (PowerShell)</span>
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+<span class="code-comment"># Or with pip</span>
+pip install uv</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>Start Qdrant Locally</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>docker run -d --name qdrant \
+  -p 6333:6333 -p 6334:6334 \
+  qdrant/qdrant
+
+docker ps --filter name=qdrant</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>Install Dependencies</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>uv sync</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>Configure Environment (Optional)</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>cp .env.example .env</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>Create Collection &amp; Seed Demo Ads</h3>
+        <p>Demo ads are defined in <code>data/test_ads.json</code>. Re-running <code>seed</code> upserts them.</p>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>uv run ad-index create    <span class="code-comment"># Create the collection</span>
+uv run ad-index seed      <span class="code-comment"># Load demo ads</span>
+uv run ad-index info      <span class="code-comment"># Verify: Points count should be 5</span></pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <h3>Run the Servers</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><span class="code-comment"># Data Plane (LLM-facing, read-only)</span>
+uv run ad-mcp-data
+
+<span class="code-comment"># Control Plane (admin)</span>
+uv run ad-mcp-control</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIGURATION -->
+<section id="config">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Configuration</span>
+      <h2 class="section-title">Runtime Settings</h2>
+      <p class="section-desc">Runtime settings are managed via environment variables (or <code>.env</code>), validated at startup by Pydantic.</p>
+    </div>
+
+    <div class="table-wrapper fade-in">
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>QDRANT_HOST</code></td><td><code>localhost</code></td><td>Qdrant server host</td></tr>
+          <tr><td><code>QDRANT_PORT</code></td><td><code>6333</code></td><td>Qdrant server port</td></tr>
+          <tr><td><code>QDRANT_COLLECTION_NAME</code></td><td><code>ads</code></td><td>Collection name</td></tr>
+          <tr><td><code>EMBEDDING_MODEL_ID</code></td><td><code>BAAI/bge-small-en-v1.5</code></td><td>Embedding model</td></tr>
+          <tr><td><code>EMBEDDING_DIMENSION</code></td><td><code>384</code></td><td>Vector dimension</td></tr>
+          <tr><td><code>MAX_TOP_K</code></td><td><code>100</code></td><td>Max results per match query</td></tr>
+          <tr><td><code>MAX_BATCH_SIZE</code></td><td><code>500</code></td><td>Max ads per upsert batch</td></tr>
+          <tr><td><code>REQUEST_TIMEOUT_SECONDS</code></td><td><code>30.0</code></td><td>Per-request timeout</td></tr>
+          <tr><td><code>REQUIRE_ADMIN_KEY</code></td><td><code>false</code></td><td>If true, Control Plane requires <code>MCP_ADMIN_KEY</code></td></tr>
+          <tr><td><code>REQUIRE_DATA_KEY</code></td><td><code>false</code></td><td>If true, Data Plane requires <code>MCP_DATA_KEY</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- AD SCHEMA -->
+<section id="schema">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Ad Schema</span>
+      <h2 class="section-title">What's stored in Qdrant</h2>
+      <p class="section-desc">Each ad is stored as a vector point. The embedding is generated from <code>title + body + topics</code>.</p>
+    </div>
+
+    <div class="table-wrapper fade-in">
+      <table>
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>ad_id</code></td><td>string</td><td>Unique identifier for the ad</td></tr>
+          <tr><td><code>advertiser_id</code></td><td>string</td><td>Identifier for the advertiser</td></tr>
+          <tr><td><code>title</code></td><td>string</td><td>Ad headline</td></tr>
+          <tr><td><code>body</code></td><td>string</td><td>Ad body text</td></tr>
+          <tr><td><code>cta_text</code></td><td>string</td><td>Call-to-action text</td></tr>
+          <tr><td><code>landing_url</code></td><td>string</td><td>Redirect URL</td></tr>
+          <tr><td><code>targeting.topics</code></td><td>string[]</td><td>Topics to target</td></tr>
+          <tr><td><code>targeting.locale</code></td><td>string[]</td><td>Locale codes (e.g. "en-US")</td></tr>
+          <tr><td><code>targeting.verticals</code></td><td>string[]</td><td>Industry verticals</td></tr>
+          <tr><td><code>targeting.blocked_keywords</code></td><td>string[]</td><td>Keywords to exclude</td></tr>
+          <tr><td><code>policy.sensitive</code></td><td>boolean</td><td>Sensitive content flag</td></tr>
+          <tr><td><code>policy.age_restricted</code></td><td>boolean</td><td>Age restriction flag</td></tr>
+          <tr><td><code>enabled</code></td><td>boolean</td><td>Whether the ad is eligible for matching</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- API -->
+<section id="api">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">API Reference</span>
+      <h2 class="section-title"><code>ads_match</code> request &amp; response</h2>
+      <p class="section-desc">The Data Plane <code>ads_match</code> tool uses typed DTOs &mdash; no raw dict filters are accepted.</p>
+    </div>
+
+    <div class="schema-grid fade-in">
+      <!-- Request -->
+      <div>
+        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 1rem;">Request Parameters</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr><th>Parameter</th><th>Type</th><th>Default</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>context_text</code></td><td>string (1-10000)</td><td><em>required</em></td></tr>
+              <tr><td><code>top_k</code></td><td>int (1-100)</td><td><code>5</code></td></tr>
+              <tr><td><code>placement</code></td><td>string</td><td><code>"inline"</code></td></tr>
+              <tr><td><code>surface</code></td><td>string</td><td><code>"chat"</code></td></tr>
+              <tr><td><code>topics</code></td><td>string[] | null</td><td><code>null</code></td></tr>
+              <tr><td><code>locale</code></td><td>string | null</td><td><code>null</code></td></tr>
+              <tr><td><code>verticals</code></td><td>string[] | null</td><td><code>null</code></td></tr>
+              <tr><td><code>exclude_advertiser_ids</code></td><td>string[] | null</td><td><code>null</code></td></tr>
+              <tr><td><code>exclude_ad_ids</code></td><td>string[] | null</td><td><code>null</code></td></tr>
+              <tr><td><code>age_restricted_ok</code></td><td>bool</td><td><code>false</code></td></tr>
+              <tr><td><code>sensitive_ok</code></td><td>bool</td><td><code>false</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Response -->
+      <div>
+        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 1rem;">Response Shape</h3>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-block-lang">json</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>{
+  <span class="json-key">"candidates"</span>: [
+    {
+      <span class="json-key">"ad_id"</span>: <span class="json-string">"ad-001"</span>,
+      <span class="json-key">"advertiser_id"</span>: <span class="json-string">"adv-123"</span>,
+      <span class="json-key">"title"</span>: <span class="json-string">"Learn Python Today"</span>,
+      <span class="json-key">"body"</span>: <span class="json-string">"Master Python..."</span>,
+      <span class="json-key">"cta_text"</span>: <span class="json-string">"Start Learning"</span>,
+      <span class="json-key">"landing_url"</span>: <span class="json-string">"https://example.com/python"</span>,
+      <span class="json-key">"score"</span>: <span class="json-number">0.95</span>,
+      <span class="json-key">"match_id"</span>: <span class="json-string">"m-abc123"</span>
+    }
+  ],
+  <span class="json-key">"request_id"</span>: <span class="json-string">"req-xyz-456"</span>,
+  <span class="json-key">"placement"</span>: <span class="json-string">"sidebar"</span>
+}</pre>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem;">
+          <code>match_id</code> can be passed to <code>ads_explain</code> for audit traces. <code>score</code> is cosine similarity (0&ndash;1).
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USAGE EXAMPLE -->
+<section id="usage">
+  <div class="container">
+    <div class="fade-in">
+      <span class="section-label">Example</span>
+      <h2 class="section-title">Usage in Python</h2>
+    </div>
+    <div class="code-block fade-in">
+      <div class="code-block-header">
+        <span class="code-block-lang">python</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><span class="code-keyword">from</span> ad_injector.models <span class="code-keyword">import</span> Ad, AdTargeting, AdPolicy
+<span class="code-keyword">from</span> ad_injector.wiring <span class="code-keyword">import</span> build_index_service, build_match_service
+<span class="code-keyword">from</span> ad_injector.models.mcp_requests <span class="code-keyword">import</span> MatchRequest
+
+<span class="code-comment"># Create the collection (once) and seed ads via IndexService</span>
+index_svc = <span class="code-function">build_index_service</span>()
+index_svc.<span class="code-function">ensure_collection</span>()
+
+ad = <span class="code-function">Ad</span>(
+    ad_id=<span class="code-string">"ad-001"</span>,
+    advertiser_id=<span class="code-string">"adv-123"</span>,
+    title=<span class="code-string">"Learn Python Today"</span>,
+    body=<span class="code-string">"Master Python programming with our interactive courses."</span>,
+    cta_text=<span class="code-string">"Start Learning"</span>,
+    landing_url=<span class="code-string">"https://example.com/python"</span>,
+    targeting=<span class="code-function">AdTargeting</span>(
+        topics=[<span class="code-string">"programming"</span>, <span class="code-string">"python"</span>, <span class="code-string">"education"</span>],
+        locale=[<span class="code-string">"en-US"</span>],
+        verticals=[<span class="code-string">"education"</span>, <span class="code-string">"technology"</span>],
+    ),
+    policy=<span class="code-function">AdPolicy</span>(sensitive=<span class="code-keyword">False</span>, age_restricted=<span class="code-keyword">False</span>),
+)
+index_svc.<span class="code-function">upsert_ads</span>([ad])
+
+<span class="code-comment"># Match ads via MatchService (Data Plane logic)</span>
+match_svc = <span class="code-function">build_match_service</span>()
+response, audit_trace = match_svc.<span class="code-function">match</span>(
+    <span class="code-function">MatchRequest</span>(context_text=<span class="code-string">"python tutorial"</span>, top_k=<span class="code-var">5</span>)
+)
+
+<span class="code-keyword">for</span> c <span class="code-keyword">in</span> response.candidates:
+    <span class="code-function">print</span>(<span class="code-string">f"</span>{c.ad_id}: {c.title} (score={c.score})<span class="code-string">"</span>)</pre>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <h3>Let's talk</h3>
+    <p>I'm always up for nerding out about MCP tooling, retrieval systems, and practical LLM monetization. If you're building something similar &mdash; or want to pressure-test your architecture &mdash; reach out.</p>
+    <div class="footer-links">
+      <a href="https://twitter.com/charoori_ai">Twitter</a>
+      <a href="mailto:chandrahas.aroori@gmail.com?subject=AdKit">Email</a>
+    </div>
+    <div class="footer-coffee">
+      <a href="https://www.buymeacoffee.com/charoori_ai" target="_blank">
+        <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="35">
+      </a>
+    </div>
+    <p class="footer-bottom">AdKit &mdash; MIT License</p>
+  </div>
+</footer>
+
+<script>
+  // Copy code
+  function copyCode(btn) {
+    const pre = btn.closest('.code-block').querySelector('pre');
+    const text = pre.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+  }
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav background on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.background = 'rgba(15, 14, 23, 0.95)';
+    } else {
+      nav.style.background = 'rgba(15, 14, 23, 0.8)';
+    }
+  });
+</script>
+
+</body>
+</html>
